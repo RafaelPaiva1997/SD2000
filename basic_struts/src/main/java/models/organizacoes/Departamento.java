@@ -45,6 +45,10 @@ public class Departamento extends Model {
         this.faculdade_id = faculdade_id;
     }
 
+    public int getFaculdade_id() {
+        return faculdade_id;
+    }
+
     public String sqlInsert() {
         return sqlInsert("faculdade_id, nome", "'" + faculdade_id + "','" + nome + "'");
     }

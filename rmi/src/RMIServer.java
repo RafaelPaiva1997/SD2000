@@ -1,6 +1,4 @@
 import database.DatabaseHandler;
-import rmi.DataChecker;
-import rmi.RMI;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;

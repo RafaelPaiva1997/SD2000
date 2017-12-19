@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,13 +37,17 @@ public abstract class Model implements Serializable {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public abstract String sqlInsert();
 
     public String sqlInsert(String dataTypes, String data) {
         return "INSERT INTO " + table + "(" + dataTypes + ") VALUES (" + data + ")";
     }
 
-    public String sqlUpdate() {
+    public String sqlUpdate() {;
         if (update.isEmpty())
             return "";
         StringBuilder s = new StringBuilder();

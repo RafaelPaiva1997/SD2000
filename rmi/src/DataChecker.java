@@ -1,5 +1,3 @@
-package rmi;
-
 import models.eleicoes.Eleicao;
 
 import java.rmi.RemoteException;

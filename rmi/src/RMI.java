@@ -1,5 +1,3 @@
-package rmi;
-
 import com.sun.media.sound.InvalidFormatException;
 import database.DatabaseHandler;
 import exceptions.EmptyQueryException;
@@ -18,6 +16,7 @@ import models.pessoas.Aluno;
 import models.pessoas.Docente;
 import models.pessoas.Funcionario;
 import models.pessoas.Pessoa;
+import rmi.RMIInterface;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
