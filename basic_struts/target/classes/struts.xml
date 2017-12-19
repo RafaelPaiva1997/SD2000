@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+
+    <package name="basic_struts" extends="struts-default">
+
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+
+        <action name="login" class="actions.managers.Session" method="login">
+            <result name="admin-console">/admin-console-index.jsp</result>
+            <result name="voting-terminal">/voting-terminal.jsp</result>
+            <result name="input-error">/index.jsp</result>
+            <result name="rmi-error">/rmi-error.jsp</result>
+        </action>
+
+        <action name="logout" class="actions.managers.Session" method="logout">
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="voting-terminal">
+
+        </action>
+
+        <action name="admin-console-faculdades" class="actions.managers.organizacoes.Faculdade" method="manage">
+            <result name="success">/admin-console-faculdades.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/rmi-error.jsp</result>
+        </action>
+
+        <action name="faculdades-new" class="actions.managers.organizacoes.Faculdade" method="validation">
+            <result name="success">/faculdades-new.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+        </action>
+
+        <action name="faculdades-edit" class="actions.managers.organizacoes.Faculdade" method="validation">
+            <result name="success">/faculdades-edit.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+        </action>
+
+        <action name="faculdades-remove" class="actions.managers.organizacoes.Faculdade" method="remove">
+            <result name="success" type="redirect">admin-console-faculdades.action</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/rmi-error.jsp</result>
+        </action>
+
+        <action name="admin-console-departamentos" class="actions.managers.organizacoes.Departamento" method="manage">
+            <result name="success">/admin-console-departamentos.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="rmi-error">/rmi-error.jsp</result>
+        </action>
+    </package>
+
+</struts>
