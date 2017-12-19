@@ -39,7 +39,7 @@
     <tr class="column">
         <td class="row">ID</td><td class="row">Nome</td>
     </tr>
-    <s:iterator value="faculdades" var="faculdade">
+    <s:iterator value="faculdades">
         <tr class="column">
             <td class="rowleft">
                 <s:property value="id"/>
@@ -50,14 +50,15 @@
             <td class="rowright">
                 <a href="
                             <s:url action="faculdades-edit">
-                                <s:param name="faculdade"><s:property/></s:param>
+                                <s:param name="id"><s:property value="id"/></s:param>
+                                <s:param name="nome"><s:property value="nome"/></s:param>
                             </s:url>" target="_parent">
                     Editar
                 </a>
                 &nbsp;
                 <a href="
                             <s:url action="faculdades-remove">
-                                <s:param name="faculdade"><s:property/></s:param>
+                                <s:param name="id"><s:property value="id"/></s:param>
                             </s:url>" target="_parent">
                     Remover
                 </a>

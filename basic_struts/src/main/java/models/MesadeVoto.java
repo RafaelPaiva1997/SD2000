@@ -13,14 +13,12 @@ public class MesadeVoto extends Model implements Serializable {
     public MesadeVoto() {
         super();
         table = "Mesa_Votos";
-        updateType = "working";
         working = false;
     }
 
     public MesadeVoto(int departamento_id) {
         super();
         table = "Mesa_Votos";
-        updateType = "working";
         this.departamento_id = departamento_id;
         working = false;
     }
@@ -29,7 +27,6 @@ public class MesadeVoto extends Model implements Serializable {
         super(resultSet);
         try {
             table = "Mesa_Votos";
-            updateType = "working";
             departamento_id = resultSet.getInt("departamento_id");
             working = resultSet.getBoolean("working");
         } catch (SQLException e) {
@@ -43,7 +40,6 @@ public class MesadeVoto extends Model implements Serializable {
 
     public void setWorking(boolean working) {
         this.working = working;
-        updateNew = String.valueOf(working ? 1 : 0);
     }
 
     public String sqlInsert() {

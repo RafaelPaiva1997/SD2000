@@ -7,7 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;
 
-public class ActionModel extends ActionSupport implements SessionAware {
+public abstract class ActionModel extends ActionSupport implements SessionAware {
 
     protected Pessoa user;
     protected Map<String, Object> map;
@@ -24,7 +24,7 @@ public class ActionModel extends ActionSupport implements SessionAware {
         map.put("user", user);
     }
 
-    public String validateUser() {
+    public String validateAdmin() {
         try {
             getUser();
             if (!user.isAdmin())

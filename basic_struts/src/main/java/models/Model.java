@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,15 +13,16 @@ public abstract class Model implements Serializable {
 
     protected int id;
     protected String table;
-    protected String updateNew;
-    protected String updateType;
+    protected ArrayList<String[]> update;
 
     public Model() {
+        update = new ArrayList<>();
     }
 
     public Model(ResultSet resultSet) {
         try {
             id = resultSet.getInt("ID");
+            update = new ArrayList<>();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,7 +43,12 @@ public abstract class Model implements Serializable {
     }
 
     public String sqlUpdate() {
-        return "UPDATE " + table + " SET " + updateType + " = " + updateNew + " WHERE ID = " + id;
+        if (update.isEmpty())
+            return "";
+        StringBuilder s = new StringBuilder();
+        for (String[] u : update)
+            s.append(u[0] + "=" + u[1] + ",");
+        return "UPDATE " + table + " SET " + s.toString().substring(0, s.length() - 1) + " WHERE ID = " + id;
     }
 
     public String sqlDelete() {
@@ -90,5 +97,165 @@ public abstract class Model implements Serializable {
 
     public boolean checkAdd(String s, Model model) {
         return true;
+    }
+
+    public void addProtection(String param) {
+        for (String[] u : update)
+            if (u[0].equals(param))
+                update.remove(u);
+    }
+
+    public void addString(String param, String value) {
+        addProtection(param);
+        update.add(new String[]{param, "'" + value + "'"});
+    }
+
+    public void addValue(String param, String value) {
+        addProtection(param);
+        update.add(new String[]{param, value});
+    }
+
+    public boolean update(String param, String value) {
+        boolean flag;
+        switch (param) {
+            case "nome":
+                if (flag = setNome(value))
+                    addString(param, value);
+                break;
+            case "username":
+                if (flag = setUsername(value))
+                    addString(param, value);
+                break;
+            case "password":
+                if (flag = setPassword(value))
+                    addString(param, value);
+                break;
+            case "telemovel":
+                if (flag = setTelemovel(value))
+                    addValue(param, value);
+                break;
+            case "morada":
+                if (flag = setMorada(value))
+                    addString(param, value);
+                break;
+            case "codigo_postal":
+                if (flag = setCodigo_postal(value))
+                    addString(param, value);
+                break;
+            case "localidade":
+                if (flag = setLocalidade(value))
+                    addString(param, value);
+                break;
+            case "numero_cc":
+                if (flag = setNumero_cc(value))
+                    addValue(param, value);
+                break;
+            case "genero":
+                if (flag = setGenero(value))
+                    addString(param, value);
+                break;
+            case "numero_aluno":
+                if (flag = setNumero_aluno(value))
+                    addValue(param, value);
+                break;
+            case "curso":
+                if (flag = setCurso(value))
+                    addString(param, value);
+                break;
+            case "cargo":
+                if (flag = setCargo(value))
+                    addString(param, value);
+                break;
+            case "funcao":
+                if (flag = setFuncao(value))
+                    addString(param, value);
+                break;
+            case "titulo":
+                if (flag = setTitulo(value))
+                    addString(param, value);
+                break;
+            case "descricao":
+                if (flag = setDescricao(value))
+                    addString(param, value);
+                break;
+            case "validade_cc":
+            case "data_nascimento":
+            case "data_inicio":
+            case "data_fim":
+                flag = true;
+                addValue(param, value);
+                break;
+            default:
+                flag = false;
+                break;
+        }
+        return flag;
+    }
+
+    public void updateClear() {
+        update.clear();
+    }
+
+    public boolean setNome(String nome) {
+        return false;
+    }
+
+    public boolean setUsername(String username) {
+        return false;
+    }
+
+    public boolean setPassword(String password) {
+        return false;
+    }
+
+    public boolean setTelemovel(String telemovel) {
+        return false;
+    }
+
+    public boolean setMorada(String morada) {
+        return false;
+    }
+
+    public boolean setCodigo_postal(String codigo_postal) {
+        return false;
+    }
+
+
+    public boolean setLocalidade(String localidade) {
+        return false;
+    }
+
+
+    public boolean setNumero_cc(String numero_cc) {
+        return false;
+    }
+
+
+    public boolean setGenero(String genero) {
+        return false;
+    }
+
+    public boolean setNumero_aluno(String numero_aluno) {
+        return false;
+    }
+
+    public boolean setCurso(String curso) {
+        return false;
+    }
+
+    public boolean setFuncao(String funcao) {
+        return false;
+    }
+
+    public boolean setCargo(String cargo) {
+        return false;
+    }
+
+    public boolean setTitulo(String titulo) {
+        return false;
+    }
+
+    public boolean setDescricao(String descricao) {
+        return false;
     }
 }

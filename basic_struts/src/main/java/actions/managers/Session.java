@@ -18,8 +18,8 @@ public class Session extends ActionModel {
     private String passwordError;
 
     public Session() {
-        this.usernameError = "";
-        this.passwordError = "";
+        usernameError = "";
+        passwordError = "";
     }
 
     public String index(Pessoa user) {
@@ -35,22 +35,28 @@ public class Session extends ActionModel {
             return index(user);
         } catch (UserNotLoggedException unle) {
             try {
+                user = new Pessoa();
+                if (!user.setUsername(username))
+                    throw new UsernameException("Username Inválido!");
+
                 RMI.connect();
                 user = RMI.rmi.login(username, password);
+
                 try {
                     putUser();
                 } catch (UserNotLoggedException e) {
                     addActionError("error: rmi.login() returned null");
                     return "rmi-error";
                 }
+
                 return index(user);
 
             } catch (UsernameException ue) {
                 usernameError = ue.getMessage();
-                return "input-error";
+                return INPUT;
             } catch (PasswordException pe) {
                 passwordError = pe.getMessage();
-                return "input-error";
+                return INPUT;
             } catch (RemoteException | NotBoundException rmie) {
                 addActionError(rmie.getMessage());
                 return "rmi-error";

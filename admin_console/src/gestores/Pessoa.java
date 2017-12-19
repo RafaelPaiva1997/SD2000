@@ -165,7 +165,7 @@ public class Pessoa {
 
             getProperty("Insira o Número de Aluno: ",
                     "Por favor insira um número de aluno com apenas 10 digitos.\n",
-                    () -> !aluno.setNumeroAluno(sc.nextLine()));
+                    () -> !aluno.setNumero_aluno(sc.nextLine()));
 
             getProperty("Insira o Curso: ",
                     "Por favora insira o nome do curso usando apenas letras.\n",

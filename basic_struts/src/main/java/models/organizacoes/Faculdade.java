@@ -29,6 +29,7 @@ public class Faculdade extends Model implements Serializable {
         return nome;
     }
 
+    @Override
     public boolean setNome(String nome) {
         boolean flag = true;
         if (lenghtMaior(nome, 0) &&
@@ -36,19 +37,6 @@ public class Faculdade extends Model implements Serializable {
             this.nome = nome;
         else
             flag = false;
-        return flag;
-    }
-
-    public boolean update(String updateType, String updateNew) {
-        boolean flag = false;
-        this.updateType = updateType;
-        this.updateNew = "'" + updateNew + "'";
-        switch (updateType) {
-            case "nome":
-                flag = setNome(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-        }
         return flag;
     }
 

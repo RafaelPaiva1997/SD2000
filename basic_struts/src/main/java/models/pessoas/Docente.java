@@ -49,19 +49,6 @@ public class Docente extends Model implements Serializable {
         return flag;
     }
 
-    public boolean update(String updateType, String updateNew) {
-        boolean flag = false;
-        this.updateType = updateType;
-        this.updateNew = "'" + updateNew + "'";
-        switch (updateType) {
-            case "curso":
-                flag = setCargo(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-        }
-        return flag;
-    }
-
     @Override
     public String sqlInsert() {
         return sqlInsert("pessoa_id, cargo", pessoa_id + "," + cargo + "'");

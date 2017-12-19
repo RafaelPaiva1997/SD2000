@@ -9,9 +9,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Editar Faculdade</title>
 </head>
 <body>
-<p><s:property value="print"/> </p>
+<h1>Editar Faculdade</h1>
+<s:form action="faculdades-update">
+    <s:textfield name="nome" label="Nome" value="%{nome}"/>
+    <s:submit/>
+</s:form>
 </body>
 </html>

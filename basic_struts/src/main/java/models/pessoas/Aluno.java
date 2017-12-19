@@ -43,11 +43,12 @@ public class Aluno extends Model implements Serializable {
         return curso;
     }
 
-    public boolean setNumeroAluno(String numeroAluno) {
+    @Override
+    public boolean setNumero_aluno(String numero_aluno) {
         boolean flag = true;
-        if (lenghtIgual(numeroAluno, 10) &&
-                isNumber(numeroAluno))
-            this.numero_aluno = Integer.parseInt(numeroAluno);
+        if (lenghtIgual(numero_aluno, 10) &&
+                isNumber(numero_aluno))
+            this.numero_aluno = Integer.parseInt(numero_aluno);
         else
             flag = false;
         ;
@@ -55,6 +56,7 @@ public class Aluno extends Model implements Serializable {
 
     }
 
+    @Override
     public boolean setCurso(String curso) {
         boolean flag = true;
         if (lenghtMaior(curso, 0) &&
@@ -62,23 +64,6 @@ public class Aluno extends Model implements Serializable {
             this.curso = curso;
         else
             flag = false;
-        return flag;
-    }
-
-    public boolean update(String updateType, String updateNew) {
-        boolean flag = false;
-        this.updateType = updateType;
-        this.updateNew = updateNew;
-        switch (updateType) {
-            case "curso":
-                flag = setCurso(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "numero_aluno":
-                flag = setNumeroAluno(updateNew);
-                this.updateNew = updateNew;
-                break;
-        }
         return flag;
     }
 

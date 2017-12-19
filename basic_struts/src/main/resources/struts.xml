@@ -16,7 +16,7 @@
         <action name="login" class="actions.managers.Session" method="login">
             <result name="admin-console">/admin-console-index.jsp</result>
             <result name="voting-terminal">/voting-terminal.jsp</result>
-            <result name="input-error">/index.jsp</result>
+            <result name="input">/index.jsp</result>
             <result name="rmi-error">/rmi-error.jsp</result>
         </action>
 
@@ -35,14 +35,30 @@
             <result name="rmi-error">/rmi-error.jsp</result>
         </action>
 
-        <action name="faculdades-new" class="actions.managers.organizacoes.Faculdade" method="validation">
+        <action name="faculdades-add" class="actions.managers.organizacoes.Faculdade" method="add">
+            <result name="success" type="redirect">admin-console-faculdades.action</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/rmi-error.jsp</result>
+        </action>
+
+        <action name="faculdades-update" class="actions.managers.organizacoes.Faculdade" method="update">
+            <result name="success" type="redirect">admin-console-faculdades.action</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/rmi-error.jsp</result>
+        </action>
+
+        <action name="faculdades-new" class="actions.managers.organizacoes.Faculdade" method="validateAdmin">
             <result name="success">/faculdades-new.jsp</result>
+            <result name="input">/faculdades-new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
             <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
         </action>
 
-        <action name="faculdades-edit" class="actions.managers.organizacoes.Faculdade" method="validation">
+        <action name="faculdades-edit" class="actions.managers.organizacoes.Faculdade" method="validateAdmin">
             <result name="success">/faculdades-edit.jsp</result>
+            <result name="input">/faculdades-edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
             <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
         </action>

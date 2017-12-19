@@ -115,6 +115,7 @@ public class Pessoa extends Model implements Serializable {
         this.tipo = tipo;
     }
 
+    @Override
     public boolean setNome(String nome) {
         boolean flag = true;
         if (lenghtMaior(nome, 0) &&
@@ -125,16 +126,17 @@ public class Pessoa extends Model implements Serializable {
         return flag;
     }
 
+    @Override
     public boolean setUsername(String username) {
         boolean flag = true;
-        this.username = "";
-        if (lenghtEntre(username, 8, 20))
+        if (!username.contains("\\") && lenghtEntre(username, 8, 20))
             this.username = username;
         else
             flag = false;
         return flag;
     }
 
+    @Override
     public boolean setPassword(String password) {
         boolean flag = true;
         if (lenghtEntre(password, 8, 20))
@@ -148,6 +150,7 @@ public class Pessoa extends Model implements Serializable {
         this.departamento_id = departamento_id;
     }
 
+    @Override
     public boolean setTelemovel(String telemovel) {
         boolean flag = true;
         if (lenghtIgual(telemovel, 9) &&
@@ -158,6 +161,7 @@ public class Pessoa extends Model implements Serializable {
         return flag;
     }
 
+    @Override
     public boolean setMorada(String morada) {
         boolean flag = true;
         if (lenghtMaior(morada, 0))
@@ -178,7 +182,7 @@ public class Pessoa extends Model implements Serializable {
         return true;
     }
 
-
+    @Override
     public boolean setCodigo_postal(String codigo_postal) {
         boolean flag = true;
         if (testeCodigo_postal(codigo_postal))
@@ -188,7 +192,7 @@ public class Pessoa extends Model implements Serializable {
         return flag;
     }
 
-
+    @Override
     public boolean setLocalidade(String localidade) {
         boolean flag = true;
         if (lenghtMaior(localidade, 0) &&
@@ -200,7 +204,7 @@ public class Pessoa extends Model implements Serializable {
         return flag;
     }
 
-
+    @Override
     public boolean setNumero_cc(String numeroCC) {
         boolean flag = true;
         if (lenghtIgual(numeroCC, 8) &&
@@ -211,7 +215,7 @@ public class Pessoa extends Model implements Serializable {
         return flag;
     }
 
-
+    @Override
     public boolean setGenero(String genero) {
         boolean flag = true;
         if (genero.matches("Femenino") ||
@@ -229,56 +233,6 @@ public class Pessoa extends Model implements Serializable {
 
     public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
-    }
-
-    public boolean update(String updateType, String updateNew) {
-        boolean flag = false;
-        this.updateType = updateType;
-        this.updateNew = updateNew;
-        switch (updateType) {
-            case "nome":
-                flag = setNome(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "username":
-                flag = setUsername(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "password":
-                flag = setPassword(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "telemovel":
-                flag = setTelemovel(updateNew);
-                break;
-            case "morada":
-                flag = setMorada(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "codigo_postal":
-                flag = setCodigo_postal(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "localidade":
-                flag = setLocalidade(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "numero_cc":
-                flag = setNumero_cc(updateNew);
-                break;
-            case "genero":
-                flag = setGenero(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "validade_cc":
-                this.updateNew = updateNew;
-                break;
-            case "data_nascimento":
-                this.updateNew = updateNew;
-                break;
-
-        }
-        return flag;
     }
 
 

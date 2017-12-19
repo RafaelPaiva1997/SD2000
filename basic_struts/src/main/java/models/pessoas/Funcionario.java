@@ -37,6 +37,7 @@ public class Funcionario extends Model implements Serializable {
         }
     }
 
+    @Override
     public boolean setFuncao(String funcao) {
         boolean flag = true;
         if (lenghtMaior(funcao, 0) &&
@@ -44,20 +45,6 @@ public class Funcionario extends Model implements Serializable {
             this.funcao = funcao;
         else
             flag = false;
-        return flag;
-    }
-
-
-    public boolean update(String updateType, String updateNew) {
-        boolean flag = false;
-        this.updateType = updateType;
-        this.updateNew = updateNew;
-        switch (updateType) {
-            case "funcao":
-                flag = setFuncao(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-        }
         return flag;
     }
 

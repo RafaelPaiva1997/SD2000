@@ -65,8 +65,6 @@ public class Eleicao extends Model implements Serializable {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
-        updateType = "finished";
-        updateNew = String.valueOf(finished ? 1 : 0);
     }
 
     public void setTipo(String tipo) {
@@ -81,6 +79,7 @@ public class Eleicao extends Model implements Serializable {
         this.data_fim = data_fim;
     }
 
+    @Override
     public boolean setTitulo(String titulo) {
         boolean flag = true;
         if (lenghtMaior(titulo, 0) &&
@@ -91,6 +90,7 @@ public class Eleicao extends Model implements Serializable {
         return flag;
     }
 
+    @Override
     public boolean setDescricao(String descricao) {
         boolean flag = true;
         if (lenghtMaior(descricao, 0) &&
@@ -103,27 +103,6 @@ public class Eleicao extends Model implements Serializable {
 
     public void setDepartamento_id(int departamento_id) {
         this.departamento_id = departamento_id;
-    }
-
-    public boolean update(String updateType, String updateNew) {
-        boolean flag = false;
-        this.updateType = updateType;
-        this.updateNew = updateNew;
-        switch (updateType) {
-            case "titulo":
-                flag = setTitulo(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "descricao":
-                flag = setDescricao(updateNew);
-                this.updateNew = "'" + updateNew + "'";
-                break;
-            case "data_inicio":
-            case "data_fim":
-                flag = true;
-                break;
-        }
-        return flag;
     }
 
     @Override

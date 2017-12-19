@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="basic_struts" />
+    <orderEntry type="module" module-name="Struts2One" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>

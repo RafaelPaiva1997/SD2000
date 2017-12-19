@@ -159,7 +159,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                             models.add(new NucleoEstudantes(resultSet));
                         break;
                     default:
-                        throw new InvalidFormatException();
+                        throw new InvalidFormatException("wrong table selected");
                 }
             } while (resultSet.next());
 
@@ -256,12 +256,12 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
             ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM Pessoas WHERE username='" + username + "'");
 
             if (!resultSet.next())
-                throw new UsernameException();
+                throw new UsernameException("Username não encontrado!");
 
             Pessoa pessoa = new Pessoa(resultSet);
 
             if (!pessoa.getPassword().equals(password))
-                throw new PasswordException();
+                throw new PasswordException("Password inválida para este Username!");
 
             return pessoa;
         } catch (SQLException e) {
