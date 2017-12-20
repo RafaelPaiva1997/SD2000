@@ -3,9 +3,7 @@ package actions.managers.organizacoes;
 import actions.ActionModel;
 import com.sun.media.sound.InvalidFormatException;
 import exceptions.EmptyQueryException;
-import models.Model;
 import models.organizacoes.Departamento;
-import models.organizacoes.Faculdade;
 import rmi.RMI;
 
 import java.rmi.RemoteException;
@@ -16,22 +14,22 @@ public class Departamentos extends ActionModel {
     private int id;
     private int faculdade_id;
     private String nome;
-    private String faculdadeError;
     private String nomeError;
     private String faculdade;
-    private String defultFaculdade;
+    private String faculdadeDefault;
+    private String faculdadeError;
     private ArrayList<String> faculdades;
     private ArrayList<Departamento> departamentos;
 
     public Departamentos() {
-        nomeError="";
+        faculdade = "";
+        nomeError = "";
+        faculdadeError = "";
+        faculdades = new ArrayList<>();
+        departamentos = new ArrayList<>();
     }
 
-    public String manage() {
-        String validation;
-        if (!(validation = validateAdmin()).equals("success"))
-            return validation;
-
+    public String fillDepartamentos() {
         try {
             departamentos = new ArrayList(RMI.rmi.getMany("departamentos", ""));
             return SUCCESS;
@@ -39,9 +37,17 @@ public class Departamentos extends ActionModel {
             addActionError(e.getMessage());
             return "rmi-error";
         } catch (EmptyQueryException eqe) {
-            faculdades = new ArrayList<>();
+            departamentos = new ArrayList<>();
             return SUCCESS;
         }
+    }
+
+    public String manage() {
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
+        return fillDepartamentos();
     }
 
     public String add() {
@@ -51,37 +57,97 @@ public class Departamentos extends ActionModel {
 
         Departamento departamento = new Departamento();
 
-        Faculdade faculdade;
-
         if (!departamento.setNome(nome))
             nomeError = "Por favor insira um nome só com letras!";
 
         try {
-            if ((faculdade = (Faculdade) RMI.rmi.get("departamentos", "nome=" + this.faculdade)) == null)
-                faculdadeError = "Erro ao selecionar a faculdade!";
-            else
-                departamento.setFaculdade_id(faculdade.getId());
+            departamento.setFaculdade_id(RMI.rmi.get("faculdades", "ID=" + this.faculdade.split(" - ")[0]).getId());
 
-            if (nomeError.equals("") && faculdadeError.equals("")) {
+            if (nomeError.equals("")) {
                 RMI.rmi.insert(departamento);
                 return SUCCESS;
             }
+
+            fillFaculdades();
             return INPUT;
-        } catch (RemoteException re) {
-            addActionError(re.getMessage());
+        } catch (RemoteException | InvalidFormatException e) {
+            addActionError(e.getMessage());
             return "rmi-error";
+        } catch (EmptyQueryException eqe) {
+            faculdadeError = "Erro ao seleccionar a faculdade!";
+            fillFaculdades();
+            return INPUT;
+        }
+    }
+
+    public String getFaculdadeById(int id) {
+        for (String f : faculdades)
+            if (id == Integer.parseInt(f.split(" - ")[0]))
+                return f;
+        return "";
+    }
+
+    public String fillFaculdades() {
+        try {
+            faculdades = RMI.rmi.getOptions("faculdades", "");
+
+            faculdadeDefault = getFaculdadeById(faculdade_id);
+
+            return SUCCESS;
+        } catch (RemoteException | InvalidFormatException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
+        } catch (EmptyQueryException eqe) {
+            addActionError("Não existem faculdades, por favor adicione uma!");
+            fillDepartamentos();
+            return INPUT;
         }
     }
 
     public String fetchFaculdades() {
-        return SUCCESS;
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
+        return fillFaculdades();
     }
 
     public String update() {
         String validation;
         if (!(validation = validateAdmin()).equals("success"))
             return validation;
-        return SUCCESS;
+
+        try {
+            Departamento departamento = (Departamento) RMI.rmi.get("departamentos", "ID=" + id);
+
+            if (!departamento.getNome().equals(nome) && !departamento.update("nome", nome))
+                nomeError = "Por favor insira um nome só com letras!";
+
+            try {
+                if (!(departamento.getId() == Integer.parseInt(faculdade.split(" - ")[0])))
+                    departamento.update("faculdade_id", String.valueOf(RMI.rmi.get("faculdades", "ID=" + this.faculdade.split(" - ")[0]).getId()));
+
+                if (nomeError.equals("")) {
+                    RMI.rmi.update(departamento);
+                    return SUCCESS;
+                }
+
+                departamento.updateClear();
+                fillFaculdades();
+                return INPUT;
+            } catch (RemoteException | InvalidFormatException e) {
+                addActionError(e.getMessage());
+                return "rmi-error";
+            } catch (EmptyQueryException eqe) {
+                faculdadeError = "Erro ao seleccionar a faculdade!";
+                fillFaculdades();
+                return INPUT;
+            }
+
+        } catch (RemoteException | InvalidFormatException | EmptyQueryException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
+        }
     }
 
     public String remove() {
@@ -90,13 +156,21 @@ public class Departamentos extends ActionModel {
             return validation;
 
         try {
-            Model model;
-            if ((model = RMI.rmi.get("departamentos", "ID=" + id)) == null)
-                return INPUT;
-            RMI.rmi.delete(model);
-            return SUCCESS;
-        } catch (RemoteException re) {
-            addActionError(re.getMessage());
+            RMI.rmi.get("pessoas", "departamento_id=" + id);
+            addActionError("Departamento contem pessoas, impossível apagar!");
+            fillDepartamentos();
+            return INPUT;
+        } catch (EmptyQueryException eqe) {
+            try {
+                RMI.rmi.delete("mesa_votos", "departamento_id=" + id);
+                RMI.rmi.delete("departamentos", "ID=" + id);
+                return SUCCESS;
+            } catch (RemoteException e) {
+                addActionError(e.getMessage());
+                return "rmi-error";
+            }
+        } catch (RemoteException | InvalidFormatException e) {
+            addActionError(e.getMessage());
             return "rmi-error";
         }
     }
@@ -149,7 +223,7 @@ public class Departamentos extends ActionModel {
         return faculdadeError;
     }
 
-    public String getDefultFaculdade() {
-        return defultFaculdade;
+    public String getFaculdadeDefault() {
+        return faculdadeDefault;
     }
 }

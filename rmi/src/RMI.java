@@ -26,6 +26,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.EmptyStackException;
 
 public class RMI extends UnicastRemoteObject implements RMIInterface {
 
@@ -44,7 +45,11 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
 
     @Override
     public boolean update(Model model) throws RemoteException {
-        return databaseHandler.execute(model.sqlUpdate());
+        try {
+            return databaseHandler.execute(model.sqlUpdate());
+        } catch (EmptyStackException e) {
+            return false;
+        }
     }
 
     @Override
@@ -73,7 +78,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
     }
 
     @Override
-    public Model get(String table, String query) throws RemoteException {
+    public Model get(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException {
         try {
             ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM " + table + " WHERE " + query);
 
@@ -103,12 +108,13 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                         else
                             return new NucleoEstudantes(resultSet);
                     default:
-                        return null;
+                        throw new InvalidFormatException("wrong table selected");
                 }
-            } else return null;
+            }
+            throw new EmptyQueryException();
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new RemoteException("SQL Exception");
         }
     }
 
@@ -163,6 +169,33 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
             } while (resultSet.next());
 
             return models;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RemoteException("SQL Exception");
+        }
+    }
+
+    @Override
+    public ArrayList<String> getOptions(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException {
+        try {
+            ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM " + table + query);
+
+            ArrayList<String> out = new ArrayList<>();
+
+            if (!resultSet.next())
+                throw new EmptyQueryException();
+
+            do {
+                switch (table.toLowerCase()) {
+                    case "faculdades":
+                        out.add(resultSet.getInt("ID") + " - " + resultSet.getString("nome"));
+                        break;
+                    default:
+                        throw new InvalidFormatException("wrong table selected");
+                }
+            } while (resultSet.next());
+
+            return out;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RemoteException("SQL Exception");
@@ -268,6 +301,8 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
             throw new RemoteException("SQL Exception");
         }
     }
+
+    /*
 
     @Override
     public int queryInt(String table, String query, String query2) throws RemoteException {
@@ -431,7 +466,9 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
         } catch (SQLException e) {
             e.printStackTrace();
             return new Voto[0];
-        }    }
+        }
+    }
+    */
 
     public boolean put(Registry registry) {
         boolean flag = true;

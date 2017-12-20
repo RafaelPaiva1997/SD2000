@@ -8,6 +8,7 @@ import models.organizacoes.Faculdade;
 import rmi.RMI;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Faculdades extends ActionModel {
@@ -18,14 +19,10 @@ public class Faculdades extends ActionModel {
     private ArrayList<Faculdade> faculdades;
 
     public Faculdades() {
-        nomeError="";
+        nomeError= "";
     }
 
-    public String manage() {
-        String validation;
-        if (!(validation = validateAdmin()).equals("success"))
-            return validation;
-
+    public String fillFaculdades() {
         try {
             faculdades = new ArrayList(RMI.rmi.getMany("faculdades", ""));
             return SUCCESS;
@@ -36,6 +33,14 @@ public class Faculdades extends ActionModel {
             faculdades = new ArrayList<>();
             return SUCCESS;
         }
+    }
+
+    public String manage() {
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
+        return fillFaculdades();
     }
 
     public String add() {
@@ -65,21 +70,26 @@ public class Faculdades extends ActionModel {
         if (!(validation = validateAdmin()).equals("success"))
             return validation;
 
-        Faculdade faculdade = new Faculdade();
-
-        if (!faculdade.update("nome", nome))
-            nomeError = "Por favor insira um nome só com letras!";
-
-        faculdade.setId(id);
-
         try {
-            if (nomeError.equals("")) {
-                RMI.rmi.update(faculdade);
-                return SUCCESS;
+            Faculdade faculdade = (Faculdade) RMI.rmi.get("faculdades", "ID=" + id);
+
+            if (!faculdade.getNome().equals(nome) && !faculdade.update("nome", nome))
+                nomeError = "Por favor insira um nome só com letras!";
+
+            try {
+                if (nomeError.equals("")) {
+                    RMI.rmi.update(faculdade);
+                    return SUCCESS;
+                }
+
+                faculdade.updateClear();
+                return INPUT;
+            } catch (RemoteException re) {
+                addActionError(re.getMessage());
+                return "rmi-error";
             }
-            return INPUT;
-        } catch (RemoteException re) {
-            addActionError(re.getMessage());
+        } catch (RemoteException | InvalidFormatException | EmptyQueryException e) {
+            addActionError(e.getMessage());
             return "rmi-error";
         }
     }
@@ -90,13 +100,20 @@ public class Faculdades extends ActionModel {
             return validation;
 
         try {
-            Model model;
-            if ((model = RMI.rmi.get("faculdades", "ID=" + id)) == null)
-                return INPUT;
-            RMI.rmi.delete(model);
-            return SUCCESS;
-        } catch (RemoteException re) {
-            addActionError(re.getMessage());
+            RMI.rmi.get("departamentos", "faculdade_id=" + id);
+            addActionError("Faculdade contem departamentos, impossível apagar!");
+            fillFaculdades();
+            return INPUT;
+        } catch (EmptyQueryException eqe) {
+            try {
+                RMI.rmi.delete("faculdades", "ID=" + id);
+                return SUCCESS;
+            } catch (RemoteException e) {
+                addActionError(e.getMessage());
+                return "rmi-error";
+            }
+        } catch (RemoteException | InvalidFormatException e) {
+            addActionError(e.getMessage());
             return "rmi-error";
         }
     }

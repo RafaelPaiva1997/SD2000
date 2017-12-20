@@ -35,6 +35,14 @@ public abstract class ActionModel extends ActionSupport implements SessionAware 
         }
     }
 
+    public String voltar() {
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
+        return SUCCESS;
+    }
+
     @Override
     public void setSession(Map<String, Object> map) {
         this.map = map;

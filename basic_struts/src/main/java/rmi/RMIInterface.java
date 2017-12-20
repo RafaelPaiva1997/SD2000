@@ -13,6 +13,7 @@ import models.pessoas.Pessoa;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -32,13 +33,17 @@ public interface RMIInterface extends Remote {
 
     boolean reset() throws RemoteException;
 
-    Model get(String table, String query) throws RemoteException;
+    Model get(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException;
 
     ArrayList<Model> getMany(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException;
+
+    ArrayList<String> getOptions(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException;
 
     String query(String table, String query, String query2) throws RemoteException;
 
     Pessoa login(String username, String password) throws RemoteException, UsernameException, PasswordException;
+
+    /*
 
     int queryInt(String table, String query, String query2) throws RemoteException;
 
@@ -55,4 +60,6 @@ public interface RMIInterface extends Remote {
     Lista[] getListas(String query) throws RemoteException;
 
     Voto[] getVotos(String query) throws RemoteException;
+
+    */
 }

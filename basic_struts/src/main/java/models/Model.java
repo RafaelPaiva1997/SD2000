@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.EmptyStackException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,12 +48,14 @@ public abstract class Model implements Serializable {
         return "INSERT INTO " + table + "(" + dataTypes + ") VALUES (" + data + ")";
     }
 
-    public String sqlUpdate() {;
+    public String sqlUpdate() throws EmptyStackException {
         if (update.isEmpty())
-            return "";
+            throw new EmptyStackException();
+
         StringBuilder s = new StringBuilder();
         for (String[] u : update)
             s.append(u[0] + "=" + u[1] + ",");
+
         return "UPDATE " + table + " SET " + s.toString().substring(0, s.length() - 1) + " WHERE ID = " + id;
     }
 
@@ -123,6 +126,11 @@ public abstract class Model implements Serializable {
     public boolean update(String param, String value) {
         boolean flag;
         switch (param) {
+            case "faculdade_id":
+            case "departamento_id":
+                addValue(param, value);
+                flag = true;
+                break;
             case "nome":
                 if (flag = setNome(value))
                     addString(param, value);
@@ -225,16 +233,13 @@ public abstract class Model implements Serializable {
         return false;
     }
 
-
     public boolean setLocalidade(String localidade) {
         return false;
     }
 
-
     public boolean setNumero_cc(String numero_cc) {
         return false;
     }
-
 
     public boolean setGenero(String genero) {
         return false;

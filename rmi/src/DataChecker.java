@@ -21,7 +21,7 @@ public class DataChecker extends Thread {
             @Override
             public void run() {
                 try {
-                    Eleicao[] eleicaos = rmi.getEleicoes("");
+                    Eleicao[] eleicaos = new Eleicao[0];
                     Date agora = new Date();
                     for (Eleicao e : eleicaos) {
                         e.setFinished(!(e.getData_inicio().before(agora) && e.getData_fim().after(agora)));
