@@ -5,6 +5,7 @@ import models.pessoas.Pessoa;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class Lista extends Model implements Serializable {
 
@@ -33,8 +34,11 @@ public class Lista extends Model implements Serializable {
         return nome;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public boolean setTipo(String tipo) {
+        boolean flag;
+        if (flag = Arrays.toString(new String[]{"Alunos", "Docentes", "Funcionarios"}).contains(tipo))
+            this.tipo = tipo;
+        return flag;
     }
 
     @Override

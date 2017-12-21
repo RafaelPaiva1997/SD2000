@@ -34,7 +34,7 @@ public class Data implements Serializable {
         ano = c.get(Calendar.YEAR);
         mes = c.get(Calendar.MONTH);
         dia = c.get(Calendar.DAY_OF_MONTH);
-        hora = c.get(Calendar.HOUR);
+        hora = c.get(Calendar.HOUR_OF_DAY);
         minuto = c.get(Calendar.MINUTE);
         segundo = c.get(Calendar.SECOND);
     }

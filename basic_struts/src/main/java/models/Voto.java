@@ -36,8 +36,9 @@ public class Voto extends Model implements Serializable {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public boolean setTipo(String tipo) {
         this.tipo = tipo;
+        return true;
     }
 
     public void setPessoa_id(int pessoa_id) {

@@ -16,6 +16,7 @@
     <s:if test="hasActionErrors()">
         <h3><s:actionerror/></h3>
     </s:if>
+    <br>
 </div>
 <table class="lista2">
     <tr class="column">

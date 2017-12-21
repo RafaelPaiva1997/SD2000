@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Pessoa extends Model implements Serializable {
@@ -111,8 +112,12 @@ public class Pessoa extends Model implements Serializable {
         return admin;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    @Override
+    public boolean setTipo(String tipo) {
+        boolean flag;
+        if (flag = Arrays.toString(new String[]{"Aluno", "Docente", "Funcionario"}).contains(tipo))
+            this.tipo = tipo;
+        return flag;
     }
 
     @Override

@@ -1,8 +1,9 @@
-package actions.managers.organizacoes;
+package actions.managers.models;
 
 import actions.ActionModel;
 import com.sun.media.sound.InvalidFormatException;
 import exceptions.EmptyQueryException;
+import models.MesadeVoto;
 import models.organizacoes.Departamento;
 import rmi.RMI;
 
@@ -65,6 +66,7 @@ public class Departamentos extends ActionModel {
 
             if (nomeError.equals("")) {
                 RMI.rmi.insert(departamento);
+                RMI.rmi.insert(new MesadeVoto(id));
                 return SUCCESS;
             }
 
@@ -162,10 +164,20 @@ public class Departamentos extends ActionModel {
             return INPUT;
         } catch (EmptyQueryException eqe) {
             try {
-                RMI.rmi.delete("mesa_votos", "departamento_id=" + id);
-                RMI.rmi.delete("departamentos", "ID=" + id);
-                return SUCCESS;
-            } catch (RemoteException e) {
+                RMI.rmi.get("eleicaos", "departamento_id=" + id);
+                addActionError("Departamento é referenciado por eleições, impossível apagar!");
+                fillDepartamentos();
+                return INPUT;
+            } catch (EmptyQueryException eqe2) {
+                try {
+                    RMI.rmi.delete("mesa_votos", "departamento_id=" + id);
+                    RMI.rmi.delete("departamentos", "ID=" + id);
+                    return SUCCESS;
+                } catch (RemoteException re) {
+                    addActionError(re.getMessage());
+                    return "rmi-error";
+                }
+            } catch (RemoteException | InvalidFormatException e) {
                 addActionError(e.getMessage());
                 return "rmi-error";
             }
@@ -176,7 +188,7 @@ public class Departamentos extends ActionModel {
     }
 
     public ArrayList<String> getFaculdades() {
-        return faculdades;
+        return  faculdades;
     }
 
     public ArrayList<Departamento> getDepartamentos() {

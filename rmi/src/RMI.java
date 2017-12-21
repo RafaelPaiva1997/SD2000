@@ -24,8 +24,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.EmptyStackException;
 
 public class RMI extends UnicastRemoteObject implements RMIInterface {
@@ -103,7 +101,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                     case "votos":
                         return new Voto(resultSet);
                     case "eleicaos":
-                        if (resultSet.getString("tipo").equals("conselho geral"))
+                        if (resultSet.getString("tipo").equals("Conselho Geral"))
                             return new ConselhoGeral(resultSet);
                         else
                             return new NucleoEstudantes(resultSet);
@@ -158,7 +156,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                         models.add(new Voto(resultSet));
                         break;
                     case "eleicaos":
-                        if (resultSet.getString("tipo").equals("conselho geral"))
+                        if (resultSet.getString("tipo").equals("Conselho Geral"))
                             models.add(new ConselhoGeral(resultSet));
                         else
                             models.add(new NucleoEstudantes(resultSet));
@@ -188,6 +186,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
             do {
                 switch (table.toLowerCase()) {
                     case "faculdades":
+                    case "departamentos":
                         out.add(resultSet.getInt("ID") + " - " + resultSet.getString("nome"));
                         break;
                     default:
@@ -267,7 +266,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                     Eleicao eleicao;
                     s.append("Eleições: \n");
                     while (resultSet.next()) {
-                        if (resultSet.getString("tipo").equals("conselho geral"))
+                        if (resultSet.getString("tipo").equals("Conselho Geral"))
                             eleicao = new ConselhoGeral(resultSet);
                         else
                             eleicao = new NucleoEstudantes(resultSet);

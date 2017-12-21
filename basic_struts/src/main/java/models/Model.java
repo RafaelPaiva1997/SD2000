@@ -131,6 +131,10 @@ public abstract class Model implements Serializable {
                 addValue(param, value);
                 flag = true;
                 break;
+            case "tipo":
+                if (flag = setTipo(value))
+                    addString(param, value);
+                break;
             case "nome":
                 if (flag = setNome(value))
                     addString(param, value);
@@ -207,6 +211,10 @@ public abstract class Model implements Serializable {
 
     public void updateClear() {
         update.clear();
+    }
+
+    public boolean setTipo(String tipo) {
+        return false;
     }
 
     public boolean setNome(String nome) {

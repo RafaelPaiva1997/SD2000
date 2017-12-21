@@ -1,14 +1,12 @@
-package actions.managers.organizacoes;
+package actions.managers.models;
 
 import actions.ActionModel;
 import com.sun.media.sound.InvalidFormatException;
 import exceptions.EmptyQueryException;
-import models.Model;
 import models.organizacoes.Faculdade;
 import rmi.RMI;
 
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Faculdades extends ActionModel {

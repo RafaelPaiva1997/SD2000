@@ -16,8 +16,7 @@
         <tr>
             <td><s:label value="Faculdade:"/></td>
             <td>
-                <s:select label="Faculdade"
-                          headerKey="-1" headerValue="-- Select --"
+                <s:select headerKey="-1" headerValue="-- Selecionar --"
                           list="faculdades"
                           name="faculdade"
                           value="faculdadeDefault"/>

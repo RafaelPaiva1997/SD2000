@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Eleicao extends Model implements Serializable {
@@ -39,6 +40,7 @@ public class Eleicao extends Model implements Serializable {
         }
     }
 
+
     public String getTitulo() {
         return titulo;
     }
@@ -63,12 +65,15 @@ public class Eleicao extends Model implements Serializable {
         return finished;
     }
 
-    public void setFinished(boolean finished) {
-        this.finished = finished;
+    public boolean setTipo(String tipo) {
+        boolean flag;
+        if (flag = Arrays.toString(new String[]{"Conselho Geral", "Nucleo Estudantes"}).contains(tipo))
+            this.tipo = tipo;
+        return flag;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
     public void setData_inicio(Date data_inicio) {
