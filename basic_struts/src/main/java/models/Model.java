@@ -134,7 +134,7 @@ public abstract class Model implements Serializable {
         switch (param) {
             case "faculdade_id":
             case "departamento_id":
-            case "lista_id":
+            case "eleicao_id":
                 addValue(param, value);
                 flag = true;
                 break;
