@@ -32,7 +32,7 @@ public class Data implements Serializable {
         Calendar c = Calendar.getInstance();
         c.setTime(data);
         ano = c.get(Calendar.YEAR);
-        mes = c.get(Calendar.MONTH);
+        mes = c.get(Calendar.MONTH) + 1;
         dia = c.get(Calendar.DAY_OF_MONTH);
         hora = c.get(Calendar.HOUR_OF_DAY);
         minuto = c.get(Calendar.MINUTE);
@@ -57,7 +57,7 @@ public class Data implements Serializable {
     }
 
     public int getMes() {
-        return mes + 1;
+        return mes;
     }
 
     public void setMes(int mes) {

@@ -206,7 +206,7 @@ public abstract class Model implements Serializable {
             case "data_inicio":
             case "data_fim":
                 flag = true;
-                addValue(param, value);
+                addString(param, value);
                 break;
             default:
                 flag = false;

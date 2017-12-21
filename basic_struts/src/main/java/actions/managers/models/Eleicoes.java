@@ -10,6 +10,7 @@ import models.eleicoes.NucleoEstudantes;
 import rmi.RMI;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -148,13 +149,14 @@ public class Eleicoes extends ActionModel {
             return validation;
 
         try {
-            System.out.print("asd" + id);
             Eleicao eleicao = (Eleicao) RMI.rmi.get("eleicaos", "ID=" + id);
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-            if (!eleicao.getTitulo().equals(titulo) && !eleicao.setTitulo(titulo))
+
+            if (!eleicao.getTitulo().equals(titulo) && !eleicao.update("titulo", titulo))
                 tituloError = "Por favor insira um título só com letras!";
 
-            if (!eleicao.getDescricao().equals(descricao) && !eleicao.setDescricao(descricao))
+            if (!eleicao.getDescricao().equals(descricao) && !eleicao.update("descricao", descricao))
                 descricaoError = "Por favor insira uma descrição só com letras!";
 
             try {
@@ -164,7 +166,7 @@ public class Eleicoes extends ActionModel {
             }
             if (data_inicioError.equals("") && !eleicao.getData_inicio().equals(data_inicio) && !data_inicio.test())
                 data_inicioError = "Por favor insira uma data de início válida!";
-            eleicao.setData_inicio(data_inicio.export());
+            eleicao.update("data_inicio", f.format(data_inicio.export()));
 
             try {
                 data_fim = new Data(data_fim_ano, data_fim_mes, data_fim_dia, data_fim_hora, data_fim_minuto, data_fim_segundo);
@@ -173,12 +175,12 @@ public class Eleicoes extends ActionModel {
             }
             if (data_fimError.equals("") && !eleicao.getData_fim().equals(data_fim) && !data_fim.test())
                 data_fimError = "Por favor insira uma data de fim válida!";
-            eleicao.setData_fim(data_fim.export());
+            eleicao.update("data_fim", f.format(data_fim.export()));
 
 
             try {
                 if (tipo.equals("Nucleo Estudantes") && !(eleicao.getDepartamento_id() == Integer.parseInt(departamento.split(" - ")[0])))
-                    eleicao.setDepartamento_id(RMI.rmi.get("departamentos", "ID=" + departamento.split(" - ")[0]).getId());
+                    eleicao.update("departamento_id", String.valueOf(RMI.rmi.get("departamentos", "ID=" + departamento.split(" - ")[0]).getId()));
 
                 if (tituloError.equals("") &&
                         descricaoError.equals("") &&
