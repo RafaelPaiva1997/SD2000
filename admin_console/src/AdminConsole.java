@@ -1,5 +1,5 @@
-package adminconsole;
-
+import com.sun.media.sound.InvalidFormatException;
+import exceptions.EmptyQueryException;
 import gestores.*;
 import gestores.MesadeVoto;
 import models.Model;
@@ -80,7 +80,7 @@ public class AdminConsole {
                 () -> {
                     try {
                         return (model = rmi.get(table, "ID = " + sc.nextInt())) == null;
-                    } catch (RemoteException | InputMismatchException e) {
+                    } catch (RemoteException | InputMismatchException | EmptyQueryException | InvalidFormatException e) {
                         e.printStackTrace();
                         return false;
                     }

@@ -179,7 +179,7 @@ public class Eleicoes extends ActionModel {
 
 
             try {
-                if (tipo.equals("Nucleo Estudantes") && !(eleicao.getDepartamento_id() == Integer.parseInt(departamento.split(" - ")[0])))
+                if (tipo.equals("Nucleo Estudantes") && eleicao.getDepartamento_id() != Integer.parseInt(departamento.split(" - ")[0]))
                     eleicao.update("departamento_id", String.valueOf(RMI.rmi.get("departamentos", "ID=" + departamento.split(" - ")[0]).getId()));
 
                 if (tituloError.equals("") &&

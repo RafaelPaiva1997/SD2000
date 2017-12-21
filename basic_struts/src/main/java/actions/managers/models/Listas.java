@@ -4,8 +4,6 @@ import actions.ActionModel;
 import com.sun.media.sound.InvalidFormatException;
 import exceptions.EmptyQueryException;
 import models.Lista;
-import models.MesadeVoto;
-import models.organizacoes.Departamento;
 import rmi.RMI;
 
 import java.rmi.RemoteException;
@@ -98,10 +96,11 @@ public class Listas extends ActionModel {
                 nomeError = "Por favor insira um nome só com letras!";
 
             try {
-                lista.update("eleicao_id", String.valueOf(RMI.rmi.get("eleicaos", "ID=" + eleicao.split(" - ")[0]).getId()));
+                if (lista.getEleicao_id() != RMI.rmi.get("eleicaos", "ID=" + eleicao.split(" - ")[0]).getId())
+                    lista.update("eleicao_id", String.valueOf(RMI.rmi.get("eleicaos", "ID=" + eleicao.split(" - ")[0]).getId()));
 
                 if (nomeError.equals("")) {
-                    RMI.rmi.insert(lista);
+                    RMI.rmi.update(lista);
                     return SUCCESS;
                 }
 

@@ -198,7 +198,7 @@ public class Eleicao {
 
         System.out.print(eleicao.print());
 
-        if (eleicao.getData_fim().before(new Date())) {
+        /*if (eleicao.getData_fim().before(new Date())) {
             Lista[] listas = rmi.getListas("WHERE eleicao_id = " + eleicao.getId());
             Voto[] votos = rmi.getVotos("WHERE eleicao_id = " + eleicao.getId());
 
@@ -227,7 +227,7 @@ public class Eleicao {
         }
 
         sc.nextLine();
-        sc.nextLine();
+        sc.nextLine();*/
     }
 }
 

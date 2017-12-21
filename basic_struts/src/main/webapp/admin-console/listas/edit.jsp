@@ -2,16 +2,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Nova Lista <s:property value="tipo"/></title>
+    <title>Editar Listas <s:property value="tipo"/></title>
 </head>
 <body>
-<h1>Nova Lista <s:property value="tipo"/></h1>
-<s:form action="listas-add">
+<h1>Editar Lista <s:property value="tipo"/></h1>
+<s:form action="listas-update">
+    <s:hidden name="id" value="%{id}"/>
     <s:hidden name="tipo" value="%{tipo}"/>
     <table>
         <tr>
             <td><s:label value="Nome:"/></td>
-            <td><s:textfield name="nome"/></td>
+            <td><s:textfield name="nome" value="%{nome}"/></td>
             <td><s:fielderror fieldName="nome"><s:property value="nomeError"/></s:fielderror></td>
         </tr>
         <tr>
@@ -26,7 +27,7 @@
         </tr>
         <tr>
             <td><s:submit method="voltar" value="Voltar"/></td>
-            <td><s:submit method="add"/></td>
+            <td><s:submit method="update"/></td>
         </tr>
     </table>
 </s:form>

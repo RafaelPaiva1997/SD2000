@@ -126,7 +126,7 @@ public class Departamentos extends ActionModel {
                 nomeError = "Por favor insira um nome só com letras!";
 
             try {
-                if (!(departamento.getId() == Integer.parseInt(faculdade.split(" - ")[0])))
+                if (departamento.getFaculdade_id() != Integer.parseInt(faculdade.split(" - ")[0]))
                     departamento.update("faculdade_id", String.valueOf(RMI.rmi.get("faculdades", "ID=" + this.faculdade.split(" - ")[0]).getId()));
 
                 if (nomeError.equals("")) {

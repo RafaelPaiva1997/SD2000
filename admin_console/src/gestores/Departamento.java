@@ -1,5 +1,7 @@
 package gestores;
 
+import com.sun.media.sound.InvalidFormatException;
+import exceptions.EmptyQueryException;
 import models.MesadeVoto;
 import models.organizacoes.Faculdade;
 
@@ -74,7 +76,11 @@ public class Departamento {
                 () -> !departamento.setNome(sc.nextLine()));
 
         rmi.insert(departamento);
-        rmi.insert(new MesadeVoto(rmi.get("Departamentos", "nome = '" + departamento.getNome() + "'").getId()));
+        try {
+            rmi.insert(new MesadeVoto(rmi.get("Departamentos", "nome = '" + departamento.getNome() + "'").getId()));
+        } catch (EmptyQueryException | InvalidFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void update() throws RemoteException {

@@ -1,5 +1,7 @@
 package gestores;
 
+import com.sun.media.sound.InvalidFormatException;
+import exceptions.EmptyQueryException;
 import models.pessoas.Aluno;
 import models.pessoas.Docente;
 import models.pessoas.Funcionario;
@@ -161,7 +163,12 @@ public class Pessoa {
         if (r1 == 1) {
             pessoa.setTipo("aluno");
             rmi.insert(pessoa);
-            aluno = new Aluno(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
+            try {
+                aluno = new Aluno(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
+            } catch (EmptyQueryException | InvalidFormatException e) {
+                e.printStackTrace();
+                return;
+            }
 
             getProperty("Insira o Número de Aluno: ",
                     "Por favor insira um número de aluno com apenas 10 digitos.\n",
@@ -175,7 +182,12 @@ public class Pessoa {
         } else if (r1 == 2) {
             pessoa.setTipo("docente");
             rmi.insert(pessoa);
-            docente = new Docente(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
+            try {
+                docente = new Docente(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
+            } catch (EmptyQueryException | InvalidFormatException e) {
+                e.printStackTrace();
+                return;
+            }
 
             getProperty("Insira o Cargo: ",
                     "Por favora insira o cargo usando apenas letras.\n",
@@ -185,13 +197,18 @@ public class Pessoa {
         } else {
             pessoa.setTipo("funcionario");
             rmi.insert(pessoa);
-            funcionario = new Funcionario(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
-
+            try {
+                funcionario = new Funcionario(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
+            } catch (EmptyQueryException | InvalidFormatException e) {
+                e.printStackTrace();
+                return;
+            }
             getProperty("Insira a Função: ",
                     "Por favora insira a função usando apenas letras.\n",
                     () -> !funcionario.setFuncao(sc.nextLine()));
 
             rmi.insert(funcionario);
+
         }
     }
 
@@ -344,21 +361,39 @@ public class Pessoa {
 
             case "nº aluno":
             case "no aluno":
-                aluno = (Aluno) rmi.get("Alunos", "pessoa_id = " + pessoa.getId());
+                try {
+                    aluno = (Aluno) rmi.get("Alunos", "pessoa_id = " + pessoa.getId());
+                } catch (EmptyQueryException | InvalidFormatException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
                 getProperty("Por favor insira um número de aluno com apenas 10 digitos.\n",
                         () -> !aluno.update("numero_aluno", editProperty("Nº Aluno", String.valueOf(aluno.getNumero_aluno()))));
                 rmi.update(aluno);
                 break;
 
             case "curso":
-                aluno = (Aluno) rmi.get("Alunos", "pessoa_id = " + pessoa.getId());
+                try {
+                    aluno = (Aluno) rmi.get("Alunos", "pessoa_id = " + pessoa.getId());
+                } catch (EmptyQueryException | InvalidFormatException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
                 getProperty("Por favor insira um curso com pelo menos 1 caractér.\n",
                         () -> !aluno.update("curso", editProperty("Curso", aluno.getCurso())));
                 rmi.update(aluno);
                 break;
 
             case "cargo":
-                docente = (Docente) rmi.get("Docentes", "pessoa_id = " + pessoa.getId());
+                try {
+                    docente = (Docente) rmi.get("Docentes", "pessoa_id = " + pessoa.getId());
+                } catch (EmptyQueryException | InvalidFormatException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
                 getProperty("Por favor insira um cargo com pelo menos 1 caractér.\n",
                         () -> !docente.update("cargo", editProperty("Cargo", docente.getCargo())));
                 rmi.update(docente);
@@ -368,7 +403,12 @@ public class Pessoa {
             case "funçao":
             case "funcão":
             case "funcao":
-                funcionario = (Funcionario) rmi.get("Docentes", "WHERE pessoa_id = " + pessoa.getId());
+                try {
+                    funcionario = (Funcionario) rmi.get("Docentes", "WHERE pessoa_id = " + pessoa.getId());
+                } catch (EmptyQueryException | InvalidFormatException e) {
+                    e.printStackTrace();
+                    return;
+                }
                 getProperty("Por favor insira um cargo com pelo menos 1 caractér.\n",
                         () -> !funcionario.update("Funcionarios", editProperty("Funcao", funcionario.getFuncao())));
                 rmi.update(funcionario);
@@ -392,12 +432,17 @@ public class Pessoa {
             return;
 
         System.out.print(pessoa.print());
-        if (pessoa.getTipo().equals("aluno"))
-            System.out.print(((Aluno) rmi.get("Alunos", "pessoa_id = " + pessoa.getId())).print());
-        else if (pessoa.getTipo().equals("docente"))
-            System.out.print(((Docente) rmi.get("Docentes", "pessoa_id = " + pessoa.getId())).print());
-        else
-            System.out.print(((Funcionario) rmi.get("Funcionarios", "pessoa_id = " + pessoa.getId())).print());
+        try {
+            if (pessoa.getTipo().equals("aluno"))
+                System.out.print(((Aluno) rmi.get("Alunos", "pessoa_id = " + pessoa.getId())).print());
+            else if (pessoa.getTipo().equals("docente"))
+                System.out.print(((Docente) rmi.get("Docentes", "pessoa_id = " + pessoa.getId())).print());
+            else
+                System.out.print(((Funcionario) rmi.get("Funcionarios", "pessoa_id = " + pessoa.getId())).print());
+        } catch (EmptyQueryException | InvalidFormatException e) {
+            e.printStackTrace();
+            return;
+        }
 
         sc.nextLine();
         sc.nextLine();

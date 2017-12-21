@@ -90,11 +90,11 @@ public class MesadeVoto {
     }
 
     public static void votos() throws RemoteException {
-        models.MesadeVoto[] mesadeVotos = rmi.getMesasVoto("");
+        /*models.MesadeVoto[] mesadeVotos = rmi.getMesasVoto("");
         System.out.println("Mesas de Votos: ");
         for (models.MesadeVoto m : mesadeVotos)
             System.out.println("ID: " + m.getId() + " Votos: " + rmi.queryInt("Votos", "*", " WHERE mesa_voto_id = " + m.getId()));
         sc.nextLine();
-        sc.nextLine();
+        sc.nextLine();*/
     }
 }
