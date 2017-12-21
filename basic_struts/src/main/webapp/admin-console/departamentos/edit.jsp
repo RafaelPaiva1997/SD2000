@@ -1,5 +1,4 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="a" uri="/struts-tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,7 +7,7 @@
 <body>
 <h1>Editar Departamento</h1>
 <s:form action="departamentos-update">
-    <a:hidden name="id" value="%{id}"/>
+    <s:hidden name="id" value="%{id}"/>
     <table>
         <tr>
             <td><s:label value="Nome:"/></td>

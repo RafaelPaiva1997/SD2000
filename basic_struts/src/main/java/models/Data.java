@@ -39,6 +39,15 @@ public class Data implements Serializable {
         segundo = c.get(Calendar.SECOND);
     }
 
+    public Data(String ano, String mes, String dia, String hora, String minuto, String segundo) throws NumberFormatException {
+        this.ano = Integer.parseInt(ano);
+        this.mes = Integer.parseInt(mes);
+        this.dia = Integer.parseInt(dia);
+        this.hora = Integer.parseInt(hora);
+        this.minuto = Integer.parseInt(minuto);
+        this.segundo = Integer.parseInt(segundo);
+    }
+
     public int getAno() {
         return ano;
     }
@@ -48,7 +57,7 @@ public class Data implements Serializable {
     }
 
     public int getMes() {
-        return mes;
+        return mes + 1;
     }
 
     public void setMes(int mes) {
@@ -122,5 +131,13 @@ public class Data implements Serializable {
             return Date.from(LocalDateTime.of(ano, mes, dia, 0, 0).atZone(ZoneId.systemDefault()).toInstant());
         else
             return Date.from(LocalDateTime.of(ano, mes, dia, hora, minuto, segundo).atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Data))
+            return false;
+        Data d = (Data) obj;
+        return ano == d.ano && mes == d.mes && dia == d.dia && hora == d.hora && minuto == d.minuto && segundo == d.segundo;
     }
 }

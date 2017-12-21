@@ -21,23 +21,23 @@
         </tr>
         <td><s:label value="Data Início:"/></td>
         <td>
-            <s:textfield name="data_inicio_hora" size="2" value=""/> :
-            <s:textfield name="data_inicio_minuto" size="2" value=""/> :
-            <s:textfield name="data_inicio_segundo" size="2" value=""/> -
-            <s:textfield name="data_inicio_dia" size="2" value=""/> /
-            <s:textfield name="data_inicio_mes" size="2" value=""/> /
-            <s:textfield name="data_inicio_ano" size="4" value=""/>
+            <s:textfield name="data_inicio_hora" size="2" /> :
+            <s:textfield name="data_inicio_minuto" size="2" /> :
+            <s:textfield name="data_inicio_segundo" size="2" /> -
+            <s:textfield name="data_inicio_dia" size="2" /> /
+            <s:textfield name="data_inicio_mes" size="2" /> /
+            <s:textfield name="data_inicio_ano" size="4" />
         </td>
         <td><s:property value="data_inicioError"/></td>
         <tr>
             <td><s:label value="Data Fim:"/></td>
             <td>
-                <s:textfield name="data_fim_hora" size="2" value=""/> :
-                <s:textfield name="data_fim_minuto" size="2" value=""/> :
-                <s:textfield name="data_fim_segundo" size="2" value=""/> -
-                <s:textfield name="data_fim_dia" size="2" value=""/> /
-                <s:textfield name="data_fim_mes" size="2" value=""/> /
-                <s:textfield name="data_fim_ano" size="4" value=""/>
+                <s:textfield name="data_fim_hora" size="2" /> :
+                <s:textfield name="data_fim_minuto" size="2" /> :
+                <s:textfield name="data_fim_segundo" size="2" /> -
+                <s:textfield name="data_fim_dia" size="2" /> /
+                <s:textfield name="data_fim_mes" size="2" /> /
+                <s:textfield name="data_fim_ano" size="4" />
             </td>
             <td><s:property value="data_fimError"/></td>
         </tr>

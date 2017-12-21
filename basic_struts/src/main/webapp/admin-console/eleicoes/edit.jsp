@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>Editar Eleição <s:property value="tipo"/></h1>
-<s:form action="eleicoes-add">
-    <s:hidden id="id" value="%{id}"/>
+<s:form action="eleicoes-update">
+    <s:hidden name="id" value="%{id}"/>
     <s:hidden name="tipo" value="%{tipo}"/>
     <table>
         <tr>
@@ -56,7 +56,7 @@
         </s:if>
         <tr>
             <td><s:submit method="voltar" value="Voltar"/></td>
-            <td><s:submit method="add"/></td>
+            <td><s:submit method="update"/></td>
         </tr>
     </table>
 </s:form>

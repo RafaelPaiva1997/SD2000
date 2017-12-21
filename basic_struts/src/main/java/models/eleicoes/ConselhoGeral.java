@@ -6,7 +6,7 @@ public class ConselhoGeral extends Eleicao {
 
     public ConselhoGeral() {
         super();
-        tipo = "conselho geral";
+        tipo = "Conselho Geral";
     }
 
     public ConselhoGeral(ResultSet resultSet) {

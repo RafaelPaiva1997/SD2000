@@ -21,9 +21,21 @@ public class Eleicoes extends ActionModel {
     private String tituloError;
     private String descricao;
     private String descricaoError;
+    private String data_inicio_ano;
+    private String data_inicio_mes;
+    private String data_inicio_dia;
+    private String data_inicio_hora;
+    private String data_inicio_minuto;
+    private String data_inicio_segundo;
     private Data data_inicio;
     private String data_inicioError;
     private Data data_fim;
+    private String data_fim_ano;
+    private String data_fim_mes;
+    private String data_fim_dia;
+    private String data_fim_hora;
+    private String data_fim_minuto;
+    private String data_fim_segundo;
     private String data_fimError;
     private int departamento_id;
     private String departamento;
@@ -87,22 +99,36 @@ public class Eleicoes extends ActionModel {
         if (!eleicao.setDescricao(descricao))
             descricaoError = "Por favor insira uma descrição só com letras!";
 
-        if (!data_fim.test())
+        try {
+            data_inicio = new Data(data_inicio_ano, data_inicio_mes, data_inicio_dia, data_inicio_hora, data_inicio_minuto, data_inicio_segundo);
+        } catch (NumberFormatException e) {
+            data_inicioError = "Por favor insira uma data de início só com números!";
+        }
+        if (data_inicioError.equals("") && !data_inicio.test())
             data_inicioError = "Por favor insira uma data de início válida!";
+        eleicao.setData_inicio(data_inicio.export());
 
-        if (!data_fim.test())
+        try {
+            data_fim = new Data(data_fim_ano, data_fim_mes, data_fim_dia, data_fim_hora, data_fim_minuto, data_fim_segundo);
+        } catch (NumberFormatException e) {
+            data_fimError = "Por favor insira uma data de fim só com números!";
+        }
+        if (data_fimError.equals("") && !data_fim.test())
             data_fimError = "Por favor insira uma data de fim válida!";
+        eleicao.setData_fim(data_fim.export());
 
 
         try {
             if (tipo.equals("Nucleo Estudantes"))
-                eleicao.setDepartamento_id(RMI.rmi.get("faculdades", "ID=" + departamento.split(" - ")[0]).getId());
+                eleicao.setDepartamento_id(RMI.rmi.get("departamentos", "ID=" + departamento.split(" - ")[0]).getId());
 
             if (tituloError.equals("") &&
                     descricaoError.equals("") &&
                     data_inicioError.equals("") &&
-                    data_fimError.equals(""))
+                    data_fimError.equals("")) {
                 RMI.rmi.insert(eleicao);
+                return SUCCESS;
+            }
 
             fillDepartamentos();
             return INPUT;
@@ -122,35 +148,52 @@ public class Eleicoes extends ActionModel {
             return validation;
 
         try {
+            System.out.print("asd" + id);
             Eleicao eleicao = (Eleicao) RMI.rmi.get("eleicaos", "ID=" + id);
 
-            if (!eleicao.setTitulo(titulo))
+            if (!eleicao.getTitulo().equals(titulo) && !eleicao.setTitulo(titulo))
                 tituloError = "Por favor insira um título só com letras!";
 
-            if (!eleicao.setDescricao(descricao))
+            if (!eleicao.getDescricao().equals(descricao) && !eleicao.setDescricao(descricao))
                 descricaoError = "Por favor insira uma descrição só com letras!";
 
-            if (!data_fim.test())
+            try {
+                data_inicio = new Data(data_inicio_ano, data_inicio_mes, data_inicio_dia, data_inicio_hora, data_inicio_minuto, data_inicio_segundo);
+            } catch (NumberFormatException e) {
+                data_inicioError = "Por favor insira uma data de início só com números!";
+            }
+            if (data_inicioError.equals("") && !eleicao.getData_inicio().equals(data_inicio) && !data_inicio.test())
                 data_inicioError = "Por favor insira uma data de início válida!";
+            eleicao.setData_inicio(data_inicio.export());
 
-            if (!data_fim.test())
+            try {
+                data_fim = new Data(data_fim_ano, data_fim_mes, data_fim_dia, data_fim_hora, data_fim_minuto, data_fim_segundo);
+            } catch (NumberFormatException e) {
+                data_fimError = "Por favor insira uma data de fim só com números!";
+            }
+            if (data_fimError.equals("") && !eleicao.getData_fim().equals(data_fim) && !data_fim.test())
                 data_fimError = "Por favor insira uma data de fim válida!";
+            eleicao.setData_fim(data_fim.export());
 
 
             try {
-                if (tipo.equals("Nucleo Estudantes"))
-                    eleicao.setDepartamento_id(RMI.rmi.get("faculdades", "ID=" + departamento.split(" - ")[0]).getId());
+                if (tipo.equals("Nucleo Estudantes") && !(eleicao.getDepartamento_id() == Integer.parseInt(departamento.split(" - ")[0])))
+                    eleicao.setDepartamento_id(RMI.rmi.get("departamentos", "ID=" + departamento.split(" - ")[0]).getId());
 
                 if (tituloError.equals("") &&
                         descricaoError.equals("") &&
                         data_inicioError.equals("") &&
-                        data_fimError.equals(""))
-                    RMI.rmi.insert(eleicao);
+                        data_fimError.equals("")) {
+                    RMI.rmi.update(eleicao);
+                    return SUCCESS;
+                }
 
+                eleicao.updateClear();
                 fillDepartamentos();
                 return INPUT;
             } catch (RemoteException | InvalidFormatException e) {
                 addActionError(e.getMessage());
+                e.printStackTrace();
                 return "rmi-error";
             } catch (EmptyQueryException eqe) {
                 departamentoError = "Erro ao seleccionar a faculdade!";
@@ -159,6 +202,7 @@ public class Eleicoes extends ActionModel {
             }
         } catch (RemoteException | InvalidFormatException | EmptyQueryException e) {
             addActionError(e.getMessage());
+            e.printStackTrace();
             return "rmi-error";
         }
     }
@@ -191,7 +235,19 @@ public class Eleicoes extends ActionModel {
         titulo = eleicao.getTitulo();
         descricao = eleicao.getDescricao();
         data_inicio = new Data(eleicao.getData_inicio());
+        data_inicio_ano = String.valueOf(data_inicio.getAno());
+        data_inicio_mes = String.valueOf(data_inicio.getMes());
+        data_inicio_dia = String.valueOf(data_inicio.getDia());
+        data_inicio_hora = String.valueOf(data_inicio.getHora());
+        data_inicio_minuto = String.valueOf(data_inicio.getMinuto());
+        data_inicio_segundo = String.valueOf(data_inicio.getSegundo());
         data_fim = new Data(eleicao.getData_fim());
+        data_fim_ano = String.valueOf(data_fim.getAno());
+        data_fim_mes = String.valueOf(data_fim.getMes());
+        data_fim_dia = String.valueOf(data_fim.getDia());
+        data_fim_hora = String.valueOf(data_fim.getHora());
+        data_fim_minuto = String.valueOf(data_fim.getMinuto());
+        data_fim_segundo = String.valueOf(data_fim.getSegundo());
         finished = eleicao.isFinished();
     }
 
@@ -210,8 +266,6 @@ public class Eleicoes extends ActionModel {
         String validation;
         if (!(validation = validateAdmin()).equals("success"))
             return validation;
-
-        System.out.print(tipo);
 
         if (tipo.equals("Conselho Geral")) {
             try {
@@ -308,100 +362,100 @@ public class Eleicoes extends ActionModel {
         this.descricao = descricao;
     }
 
-    public int getData_inicio_ano() {
-        return data_inicio.getAno();
+    public String getData_inicio_ano() {
+        return data_inicio_ano;
     }
 
-    public void setData_inicio_ano(int data_inicio_ano) {
-        this.data_inicio.setAno(data_inicio_ano);
+    public void setData_inicio_ano(String data_inicio_ano) {
+        this.data_inicio_ano = data_inicio_ano;
     }
 
-    public int getData_inicio_mes() {
-        return data_inicio.getMes();
+    public String getData_inicio_mes() {
+        return data_inicio_mes;
     }
 
-    public void setData_inicio_mes(int data_inicio_mes) {
-        this.data_inicio.setMes(data_inicio_mes);
+    public void setData_inicio_mes(String data_inicio_mes) {
+        this.data_inicio_mes = data_inicio_mes;
     }
 
-    public int getData_inicio_dia() {
-        return data_inicio.getDia();
+    public String getData_inicio_dia() {
+        return data_inicio_dia;
     }
 
-    public void setData_inicio_dia(int data_inicio_dia) {
-        this.data_inicio.setDia(data_inicio_dia);
+    public void setData_inicio_dia(String data_inicio_dia) {
+        this.data_inicio_dia = data_inicio_dia;
     }
 
-    public int getData_inicio_hora() {
-        return data_inicio.getHora();
+    public String getData_inicio_hora() {
+        return data_inicio_hora;
     }
 
-    public void setData_inicio_hora(int data_inicio_hora) {
-        this.data_inicio.setHora(data_inicio_hora);
+    public void setData_inicio_hora(String data_inicio_hora) {
+        this.data_inicio_hora = data_inicio_hora;
     }
 
-    public int getData_inicio_minuto() {
-        return data_inicio.getMinuto();
+    public String getData_inicio_minuto() {
+        return data_inicio_minuto;
     }
 
-    public void setData_inicio_minuto(int data_inicio_minuto) {
-        this.data_inicio.setMinuto(data_inicio_minuto);
+    public void setData_inicio_minuto(String data_inicio_minuto) {
+        this.data_inicio_minuto = data_inicio_minuto;
     }
 
-    public int getData_inicio_segundo() {
-        return data_inicio.getSegundo();
+    public String getData_inicio_segundo() {
+        return data_inicio_segundo;
     }
 
-    public void setData_inicio_segundo(int data_inicio_segundo) {
-        this.data_inicio.setSegundo(data_inicio_segundo);
+    public void setData_inicio_segundo(String data_inicio_segundo) {
+        this.data_inicio_segundo = data_inicio_segundo;
     }
 
-    public int getData_fim_ano() {
-        return data_fim.getAno();
+    public String getData_fim_ano() {
+        return data_fim_ano;
     }
 
-    public void setData_fim_ano(int data_fim_ano) {
-        this.data_fim.setAno(data_fim_ano);
+    public void setData_fim_ano(String data_fim_ano) {
+        this.data_fim_ano = data_fim_ano;
     }
 
-    public int getData_fim_mes() {
-        return data_fim.getMes();
+    public String getData_fim_mes() {
+        return data_fim_mes;
     }
 
-    public void setData_fim_mes(int data_fim_mes) {
-        this.data_fim.setMes(data_fim_mes);
+    public void setData_fim_mes(String data_fim_mes) {
+        this.data_fim_mes = data_fim_mes;
     }
 
-    public int getData_fim_dia() {
-        return data_fim.getDia();
+    public String getData_fim_dia() {
+        return data_fim_dia;
     }
 
-    public void setData_fim_dia(int data_fim_dia) {
-        this.data_fim.setDia(data_fim_dia);
+    public void setData_fim_dia(String data_fim_dia) {
+        this.data_fim_dia = data_fim_dia;
     }
 
-    public int getData_fim_hora() {
-        return data_fim.getHora();
+    public String getData_fim_hora() {
+        return data_fim_hora;
     }
 
-    public void setData_fim_hora(int data_fim_hora) {
-        this.data_fim.setHora(data_fim_hora);
+    public void setData_fim_hora(String data_fim_hora) {
+        this.data_fim_hora = data_fim_hora;
     }
 
-    public int getData_fim_minuto() {
-        return data_fim.getMinuto();
+    public String getData_fim_minuto() {
+        return data_fim_minuto;
     }
 
-    public void setData_fim_minuto(int data_fim_minuto) {
-        this.data_fim.setMinuto(data_fim_minuto);
+    public void setData_fim_minuto(String data_fim_minuto) {
+        this.data_fim_minuto = data_fim_minuto;
     }
 
-    public int getData_fim_segundo() {
-        return data_fim.getSegundo();
+    public String getData_fim_segundo() {
+        return data_fim_segundo;
     }
 
-    public void setData_fim_segundo(int data_fim_segundo) {
-        this.data_fim.setSegundo(data_fim_segundo);
+    public void setData_fim_segundo(String data_fim_segundo) {
+        this.data_fim_segundo = data_fim_segundo;
     }
 
     public int getDepartamento_id() {

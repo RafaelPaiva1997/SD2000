@@ -7,7 +7,7 @@ public class NucleoEstudantes extends Eleicao {
 
     public NucleoEstudantes() {
         super();
-        tipo = "nucleo estudantes";
+        tipo = "Nucleo Estudantes";
     }
 
     public NucleoEstudantes(ResultSet resultSet) {

@@ -3,9 +3,9 @@ package models;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.EmptyStackException;
 import java.util.regex.Matcher;
@@ -91,6 +91,12 @@ public abstract class Model implements Serializable {
 
     protected boolean isNumber(String s) {
         return s.matches("^[0-9]*$");
+    }
+
+    public String removeAccents(String text) {
+        return text == null ? null :
+                Normalizer.normalize(text, Normalizer.Form.NFD)
+                        .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
     }
 
     protected String dateToSqlDate(Date date) {
