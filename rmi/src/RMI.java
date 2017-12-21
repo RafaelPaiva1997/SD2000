@@ -117,9 +117,9 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
     }
 
     @Override
-    public ArrayList<Model> getMany(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException {
+    public ArrayList<Model> getMany(String table, String query1, String query2) throws RemoteException, EmptyQueryException, InvalidFormatException {
         try {
-            ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM " + table + " " + query);
+            ResultSet resultSet = databaseHandler.executeQuery("SELECT " + query1 + " FROM " + table + " " + query2);
 
             ArrayList<Model> models = new ArrayList<>();
 
@@ -134,6 +134,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                     case "departamentos":
                         models.add(new Departamento(resultSet));
                         break;
+                    case "lista_pessoas":
                     case "pessoas":
                         models.add(new Pessoa(resultSet));
                         break;

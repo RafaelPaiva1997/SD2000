@@ -32,7 +32,7 @@ public class Departamentos extends ActionModel {
 
     public String fillDepartamentos() {
         try {
-            departamentos = new ArrayList(RMI.rmi.getMany("departamentos", ""));
+            departamentos = new ArrayList(RMI.rmi.getMany("departamentos","*", ""));
             return SUCCESS;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());

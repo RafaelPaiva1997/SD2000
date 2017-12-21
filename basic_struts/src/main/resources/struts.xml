@@ -220,7 +220,7 @@
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
-        <action name="eleicoes-details" class="actions.managers.models.Eleicoes" method="details">
+        <action name="eleicoes-details" class="actions.managers.models.Eleicoes" method="fetchEleicao">
             <result name="success">/admin-console/eleicoes/details.jsp</result>
             <result name="input">/admin-console/eleicoes/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
@@ -275,6 +275,26 @@
             <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
+
+        <action name="listas-pessoas" class="actions.managers.models.Listas" method="fetchPessoas">
+            <result name="success">/admin-console/listas/pessoas.jsp</result>
+            <result name="input">/admin-console/listas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+
+        <action name="listas-pessoas-manage" class="actions.managers.models.Listas">
+            <result name="success">/admin-console/listas/pessoas.jsp</result>
+            <result name="input">/admin-console/listas/pessoas.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+
+            <allowed-methods>addPessoa,removePessoa,voltar</allowed-methods>
+        </action>
+
     </package>
 
 </struts>

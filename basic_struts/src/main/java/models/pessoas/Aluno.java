@@ -58,12 +58,10 @@ public class Aluno extends Model implements Serializable {
 
     @Override
     public boolean setCurso(String curso) {
-        boolean flag = true;
-        if (lenghtMaior(curso, 0) &&
-                isAlpha(curso))
+        boolean flag;
+        if (flag = (lenghtMaior(curso, 0) &&
+                isAlpha(removeAccents(curso))))
             this.curso = curso;
-        else
-            flag = false;
         return flag;
     }
 

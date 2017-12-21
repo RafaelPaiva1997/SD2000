@@ -58,8 +58,8 @@
             <td class="rowright">
                 <a class="link1" href="
                             <s:url action="eleicoes-details">
-                                <s:param name="id"><s:property value="id"/></s:param>
-                                <s:param name="tipo"><s:property value="tipo"/></s:param>
+                                <s:param name="id" value="id"/>
+                                <s:param name="tipo" value="tipo"/>
                             </s:url>" target="_parent">
                     Detalhes
                 </a>

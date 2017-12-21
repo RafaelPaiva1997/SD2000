@@ -29,20 +29,22 @@ public class Eleicoes extends ActionModel {
     private String data_inicio_minuto;
     private String data_inicio_segundo;
     private Data data_inicio;
+    private Date data_inicio_print;
     private String data_inicioError;
-    private Data data_fim;
     private String data_fim_ano;
     private String data_fim_mes;
     private String data_fim_dia;
     private String data_fim_hora;
     private String data_fim_minuto;
     private String data_fim_segundo;
+    private Data data_fim;
+    private Date data_fim_print;
     private String data_fimError;
     private int departamento_id;
     private String departamento;
     private String departamentoDefault;
     private String departamentoError;
-    private boolean finished;
+    private String finished;
     private ArrayList<String> departamentos;
     private ArrayList<Eleicao> eleicoes;
 
@@ -63,7 +65,7 @@ public class Eleicoes extends ActionModel {
 
     public String fillEleicoes() {
         try {
-            eleicoes = new ArrayList(RMI.rmi.getMany("eleicaos", ""));
+            eleicoes = new ArrayList(RMI.rmi.getMany("eleicaos", "*", ""));
             return SUCCESS;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());
@@ -243,6 +245,7 @@ public class Eleicoes extends ActionModel {
         data_inicio_hora = String.valueOf(data_inicio.getHora());
         data_inicio_minuto = String.valueOf(data_inicio.getMinuto());
         data_inicio_segundo = String.valueOf(data_inicio.getSegundo());
+        data_inicio_print = eleicao.getData_inicio();
         data_fim = new Data(eleicao.getData_fim());
         data_fim_ano = String.valueOf(data_fim.getAno());
         data_fim_mes = String.valueOf(data_fim.getMes());
@@ -250,7 +253,8 @@ public class Eleicoes extends ActionModel {
         data_fim_hora = String.valueOf(data_fim.getHora());
         data_fim_minuto = String.valueOf(data_fim.getMinuto());
         data_fim_segundo = String.valueOf(data_fim.getSegundo());
-        finished = eleicao.isFinished();
+        data_fim_print = eleicao.getData_fim();
+        finished = eleicao.isFinished() ? "true" : "false";
     }
 
     public String fetchDepartamentos() {
@@ -468,6 +472,14 @@ public class Eleicoes extends ActionModel {
         this.departamento_id = departamento_id;
     }
 
+    public void setData_inicio(Data data_inicio) {
+        this.data_inicio = data_inicio;
+    }
+
+    public void setData_fim(Data data_fim) {
+        this.data_fim = data_fim;
+    }
+
     public String getTituloError() {
         return tituloError;
     }
@@ -500,8 +512,28 @@ public class Eleicoes extends ActionModel {
         return departamentoError;
     }
 
-    public boolean isFinished() {
+    public String getFinished() {
         return finished;
+    }
+
+    public void setFinished(String finished) {
+        this.finished = finished;
+    }
+
+    public Date getData_inicio_print() {
+        return data_inicio_print;
+    }
+
+    public void setData_inicio_print(Date data_inicio_print) {
+        this.data_inicio_print = data_inicio_print;
+    }
+
+    public Date getData_fim_print() {
+        return data_fim_print;
+    }
+
+    public void setData_fim_print(Date data_fim_print) {
+        this.data_fim_print = data_fim_print;
     }
 
     public ArrayList<String> getDepartamentos() {

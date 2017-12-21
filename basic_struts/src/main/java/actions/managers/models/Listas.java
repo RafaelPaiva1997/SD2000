@@ -4,6 +4,8 @@ import actions.ActionModel;
 import com.sun.media.sound.InvalidFormatException;
 import exceptions.EmptyQueryException;
 import models.Lista;
+import models.eleicoes.Eleicao;
+import models.pessoas.Pessoa;
 import rmi.RMI;
 
 import java.rmi.RemoteException;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 public class Listas extends ActionModel {
 
     private int id;
+    private int id_pessoa;
     private String tipo;
     private String nome;
     private String nomeError;
@@ -20,6 +23,8 @@ public class Listas extends ActionModel {
     private String eleicaoDefault;
     private String eleicaoError;
     private ArrayList<String> eleicoes;
+    private ArrayList<Pessoa> pessoas;
+    private ArrayList<Pessoa> nao_pessoas;
     private ArrayList<Listas> listas;
 
     public Listas() {
@@ -33,7 +38,7 @@ public class Listas extends ActionModel {
 
     public String fillListas() {
         try {
-            listas = new ArrayList(RMI.rmi.getMany("listas", ""));
+            listas = new ArrayList(RMI.rmi.getMany("listas", "*",  ""));
             return SUCCESS;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());
@@ -171,12 +176,85 @@ public class Listas extends ActionModel {
         }
     }
 
+    public String fillPessoas() {
+        try {
+            pessoas = new ArrayList(RMI.rmi.getMany("lista_pessoas", "pessoas.*",  "INNER JOIN pessoas ON lista_pessoas.lista_id=" + id + " && lista_pessoas.pessoa_id=ID"));
+            return SUCCESS;
+        } catch (RemoteException | InvalidFormatException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
+        } catch (EmptyQueryException eqe) {
+            listas = new ArrayList<>();
+            return SUCCESS;
+        }
+    }
+
+    public String fillNaoPessoas() {
+        try {
+            Eleicao eleicao = (Eleicao) RMI.rmi.get("eleicaos", "ID=" + eleicao_id);
+            String query = "";
+            if (eleicao.getTipo().equals("Nucleo Estudantes"))
+                query = " departamento_id=" + eleicao.getDepartamento_id() + " && ";
+            nao_pessoas = new ArrayList(RMI.rmi.getMany("pessoas", "*",  "WHERE" + query + " tipo='" + tipo.substring(0, tipo.length() - 1) + "' && ID NOT IN (SELECT pessoa_id FROM lista_pessoas WHERE lista_id=" + id + ")"));
+            return SUCCESS;
+        } catch (RemoteException | InvalidFormatException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
+        } catch (EmptyQueryException eqe) {
+            listas = new ArrayList<>();
+            return SUCCESS;
+        }
+    }
+
+    public String fetchPessoas() {
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
+        if (!(validation = fillPessoas()).equals("success"))
+            return validation;
+
+        return fillNaoPessoas();
+    }
+
+    public String addPessoa() {
+        try {
+            RMI.rmi.connect(RMI.rmi.get("listas", "ID=" + id), RMI.rmi.get("pessoas", "ID=" + id_pessoa));
+            fillPessoas();
+            fillNaoPessoas();
+            return SUCCESS;
+        } catch (RemoteException | EmptyQueryException | InvalidFormatException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
+        }
+    }
+
+    public String removePessoa() {
+        try {
+            RMI.rmi.disconnect(RMI.rmi.get("listas", "ID=" + id), RMI.rmi.get("pessoas", "ID=" + id_pessoa));
+            fillPessoas();
+            fillNaoPessoas();
+            return SUCCESS;
+        } catch (RemoteException | EmptyQueryException | InvalidFormatException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
+        }
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId_pessoa() {
+        return id_pessoa;
+    }
+
+    public void setId_pessoa(int id_pessoa) {
+        this.id_pessoa = id_pessoa;
     }
 
     public String getTipo() {
@@ -225,6 +303,14 @@ public class Listas extends ActionModel {
 
     public ArrayList<String> getEleicoes() {
         return eleicoes;
+    }
+
+    public ArrayList<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public ArrayList<Pessoa> getNao_pessoas() {
+        return nao_pessoas;
     }
 
     public ArrayList<Listas> getListas() {

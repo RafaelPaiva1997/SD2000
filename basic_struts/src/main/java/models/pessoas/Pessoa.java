@@ -122,7 +122,7 @@ public class Pessoa extends Model implements Serializable {
 
     @Override
     public boolean setNome(String nome) {
-        boolean flag;
+        boolean flag ;
         if (flag = (lenghtMaior(nome, 0) &&
                 isAlpha(removeAccents(nome))))
             this.nome = nome;
@@ -197,13 +197,10 @@ public class Pessoa extends Model implements Serializable {
 
     @Override
     public boolean setLocalidade(String localidade) {
-        boolean flag = true;
-        if (lenghtMaior(localidade, 0) &&
-                isAlpha(localidade))
-            this.localidade = localidade;
-        else {
-            flag = false;
-        }
+        boolean flag ;
+        if (flag =(lenghtMaior(localidade, 0) &&
+                isAlpha(removeAccents(localidade))))
+            this.localidade=localidade;
         return flag;
     }
 

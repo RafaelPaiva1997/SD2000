@@ -77,7 +77,7 @@ public class Pessoas extends ActionModel {
 
     public String fillPessoas() {
         try {
-            pessoas = new ArrayList(RMI.rmi.getMany("pessoas", ""));
+            pessoas = new ArrayList(RMI.rmi.getMany("pessoas", "*", ""));
             return SUCCESS;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());
@@ -152,7 +152,7 @@ public class Pessoas extends ActionModel {
 
         try {
 
-            pessoa.setDepartamento_id(RMI.rmi.get("faculdades", "ID=" + departamento.split(" - ")[0]).getId());
+            pessoa.setDepartamento_id(RMI.rmi.get("faculdades",  "ID=" + departamento.split(" - ")[0]).getId());
 
             if (    nomeERROR.equals("") &&
                     usernameERROR.equals("") &&

@@ -58,6 +58,16 @@
             </td>
             <td class="rowright">
                 <a class="link1" href="
+                            <s:url action="listas-pessoas">
+                                <s:param name="id"><s:property value="id"/></s:param>
+                                <s:param name="tipo"><s:property value="tipo"/></s:param>
+                                <s:param name="nome"><s:property value="nome"/></s:param>
+                                <s:param name="eleicao_id"><s:property value="eleicao_id"/></s:param>
+                            </s:url>" target="_parent">
+                    Pessoas
+                </a>
+                &nbsp;
+                <a class="link1" href="
                             <s:url action="listas-edit">
                                 <s:param name="id"><s:property value="id"/></s:param>
                                 <s:param name="tipo"><s:property value="tipo"/></s:param>

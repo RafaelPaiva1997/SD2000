@@ -22,7 +22,7 @@ public class Faculdades extends ActionModel {
 
     public String fillFaculdades() {
         try {
-            faculdades = new ArrayList(RMI.rmi.getMany("faculdades", ""));
+            faculdades = new ArrayList(RMI.rmi.getMany("faculdades","*", ""));
             return SUCCESS;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());

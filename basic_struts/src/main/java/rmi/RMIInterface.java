@@ -35,7 +35,7 @@ public interface RMIInterface extends Remote {
 
     Model get(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException;
 
-    ArrayList<Model> getMany(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException;
+    ArrayList<Model> getMany(String table, String query1, String query2) throws RemoteException, EmptyQueryException, InvalidFormatException;
 
     ArrayList<String> getOptions(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException;
 

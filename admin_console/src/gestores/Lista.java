@@ -168,7 +168,7 @@ public class Lista {
         if ((pessoa = (models.pessoas.Pessoa) escolheID("Pessoas", "a pessoa a adicionar")) == null)
             return;
 
-        rmi.connect(lista, eleicao);
+        rmi.connect(lista, pessoa);
     }
 
     public static void listPessoas() throws RemoteException {
