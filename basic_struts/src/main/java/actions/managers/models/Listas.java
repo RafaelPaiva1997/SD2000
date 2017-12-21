@@ -100,8 +100,6 @@ public class Listas extends ActionModel {
             try {
                 lista.update("eleicao_id", String.valueOf(RMI.rmi.get("eleicaos", "ID=" + eleicao.split(" - ")[0]).getId()));
 
-                lista.setTipo(tipo);
-
                 if (nomeError.equals("")) {
                     RMI.rmi.insert(lista);
                     return SUCCESS;

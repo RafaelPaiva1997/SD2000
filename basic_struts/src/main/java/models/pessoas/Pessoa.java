@@ -12,20 +12,20 @@ import java.util.Date;
 
 public class Pessoa extends Model implements Serializable {
 
-    protected String tipo;
-    protected String nome;
-    protected String username;
-    protected String password;
-    protected int departamento_id;
-    protected long telemovel;
-    protected String morada;
-    protected String codigo_postal;
-    protected String localidade;
-    protected long numero_cc;
-    protected Date validade_cc;
-    protected String genero;
-    protected Date data_nascimento;
-    protected boolean admin;
+    private String tipo;
+    private String nome;
+    private String username;
+    private String password;
+    private int departamento_id;
+    private long telemovel;
+    private String morada;
+    private String codigo_postal;
+    private String localidade;
+    private long numero_cc;
+    private Date validade_cc;
+    private String genero;
+    private Date data_nascimento;
+    private boolean admin;
 
     public Pessoa() {
         super();
