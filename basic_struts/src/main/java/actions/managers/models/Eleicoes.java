@@ -17,7 +17,6 @@ public class Eleicoes extends ActionModel {
 
     private int id;
     private String tipo;
-    private String tipoError;
     private String titulo;
     private String tituloError;
     private String descricao;
@@ -38,11 +37,10 @@ public class Eleicoes extends ActionModel {
         tipo = "";
         departamento = "";
         departamentoDefault = "";
-        tipoError = "";
         tituloError = "";
         descricaoError = "";
         data_inicioError = "";
-        data_fimoError = "";
+        data_fimError = "";
         departamentoError = "";
         data_inicio = new Data();
         data_fim = new Data();
@@ -95,8 +93,73 @@ public class Eleicoes extends ActionModel {
         if (!data_fim.test())
             data_fimError = "Por favor insira uma data de fim válida!";
 
+
         try {
-            if (tipo.equals("Nucleo Estudantes") &&)
+            if (tipo.equals("Nucleo Estudantes"))
+                eleicao.setDepartamento_id(RMI.rmi.get("faculdades", "ID=" + departamento.split(" - ")[0]).getId());
+
+            if (tituloError.equals("") &&
+                    descricaoError.equals("") &&
+                    data_inicioError.equals("") &&
+                    data_fimError.equals(""))
+                RMI.rmi.insert(eleicao);
+
+            fillDepartamentos();
+            return INPUT;
+        } catch (RemoteException | InvalidFormatException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
+        } catch (EmptyQueryException eqe) {
+            departamentoError = "Erro ao seleccionar a faculdade!";
+            fillDepartamentos();
+            return INPUT;
+        }
+    }
+
+    public String update() {
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
+        try {
+            Eleicao eleicao = (Eleicao) RMI.rmi.get("eleicaos", "ID=" + id);
+
+            if (!eleicao.setTitulo(titulo))
+                tituloError = "Por favor insira um título só com letras!";
+
+            if (!eleicao.setDescricao(descricao))
+                descricaoError = "Por favor insira uma descrição só com letras!";
+
+            if (!data_fim.test())
+                data_inicioError = "Por favor insira uma data de início válida!";
+
+            if (!data_fim.test())
+                data_fimError = "Por favor insira uma data de fim válida!";
+
+
+            try {
+                if (tipo.equals("Nucleo Estudantes"))
+                    eleicao.setDepartamento_id(RMI.rmi.get("faculdades", "ID=" + departamento.split(" - ")[0]).getId());
+
+                if (tituloError.equals("") &&
+                        descricaoError.equals("") &&
+                        data_inicioError.equals("") &&
+                        data_fimError.equals(""))
+                    RMI.rmi.insert(eleicao);
+
+                fillDepartamentos();
+                return INPUT;
+            } catch (RemoteException | InvalidFormatException e) {
+                addActionError(e.getMessage());
+                return "rmi-error";
+            } catch (EmptyQueryException eqe) {
+                departamentoError = "Erro ao seleccionar a faculdade!";
+                fillDepartamentos();
+                return INPUT;
+            }
+        } catch (RemoteException | InvalidFormatException | EmptyQueryException e) {
+            addActionError(e.getMessage());
+            return "rmi-error";
         }
     }
 
@@ -349,10 +412,6 @@ public class Eleicoes extends ActionModel {
         this.departamento_id = departamento_id;
     }
 
-    public String getTipoError() {
-        return tipoError;
-    }
-
     public String getTituloError() {
         return tituloError;
     }
@@ -365,7 +424,7 @@ public class Eleicoes extends ActionModel {
         return data_inicioError;
     }
 
-    public String getData_fimoError() {
+    public String getData_fimError() {
         return data_fimError;
     }
 

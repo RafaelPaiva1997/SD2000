@@ -62,7 +62,7 @@ public class Departamentos extends ActionModel {
             nomeError = "Por favor insira um nome só com letras!";
 
         try {
-            departamento.setFaculdade_id(RMI.rmi.get("faculdades", "ID=" + this.faculdade.split(" - ")[0]).getId());
+            departamento.setFaculdade_id(RMI.rmi.get("faculdades", "ID=" + faculdade.split(" - ")[0]).getId());
 
             if (nomeError.equals("")) {
                 RMI.rmi.insert(departamento);
