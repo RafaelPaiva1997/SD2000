@@ -119,7 +119,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
     @Override
     public ArrayList<Model> getMany(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException {
         try {
-            ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM " + table + query);
+            ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM " + table + " " + query);
 
             ArrayList<Model> models = new ArrayList<>();
 
@@ -176,7 +176,7 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
     @Override
     public ArrayList<String> getOptions(String table, String query) throws RemoteException, EmptyQueryException, InvalidFormatException {
         try {
-            ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM " + table + query);
+            ResultSet resultSet = databaseHandler.executeQuery("SELECT * FROM " + table + " " + query);
 
             ArrayList<String> out = new ArrayList<>();
 
@@ -188,6 +188,10 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                     case "faculdades":
                     case "departamentos":
                         out.add(resultSet.getInt("ID") + " - " + resultSet.getString("nome"));
+                        break;
+
+                    case "eleicaos":
+                        out.add(resultSet.getInt("ID") + " - " + resultSet.getString("titulo"));
                         break;
                     default:
                         throw new InvalidFormatException("wrong table selected");

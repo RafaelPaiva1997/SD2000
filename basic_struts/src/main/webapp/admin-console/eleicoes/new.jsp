@@ -45,7 +45,7 @@
             <tr>
                 <td><s:label value="Departamento:"/></td>
                 <td>
-                    <s:select headerKey="-1" headerValue="-- Selecionar --"
+                    <s:select headerKey="-1" headerValue="-- Seleccionar --"
                               list="departamentos"
                               name="departamento"
                               value="departamentoDefault"/>

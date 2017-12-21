@@ -55,7 +55,7 @@
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
-        <action name="admin-console-pessoas" class="actions.managers.models.Departamentos" method="manage">
+        <action name="admin-console-pessoas" class="actions.managers.models.Pessoas" method="manage">
             <result name="success">/admin-console/pessoas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
@@ -67,7 +67,7 @@
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
-        <action name="admin-console-listas" class="actions.managers.models.Departamentos" method="manage">
+        <action name="admin-console-listas" class="actions.managers.models.Listas" method="manage">
             <result name="success">/admin-console/listas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
@@ -228,6 +228,53 @@
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
+
+
+
+
+        <action name="listas-add" class="actions.managers.models.Listas">
+            <result name="success" type="redirect">admin-console-listas.action</result>
+            <result name="input">/admin-console/listas/new.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+
+            <allowed-methods>add,voltar</allowed-methods>
+        </action>
+
+        <action name="listas-update" class="actions.managers.models.Listas">
+            <result name="success" type="redirect">admin-console-listas.action</result>
+            <result name="input">/admin-console/listas/edit.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+
+            <allowed-methods>update,voltar</allowed-methods>
+        </action>
+
+        <action name="listas-new" class="actions.managers.models.Listas" method="fetchEleicoes">
+            <result name="success">/admin-console/listas/new.jsp</result>
+            <result name="input">/admin-console/listas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+        <action name="listas-edit" class="actions.managers.models.Listas" method="fetchEleicoes">
+            <result name="success">/admin-console/listas/edit.jsp</result>
+            <result name="input">/admin-console/listas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+        <action name="listas-remove" class="actions.managers.models.Listas" method="remove">
+            <result name="success" type="redirect">admin-console-listas.action</result>
+            <result name="input">admin-console/listas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
     </package>
 
 </struts>

@@ -93,7 +93,7 @@
     <tr>
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-faculdades"/>" target="_parent">FACULDADES</a></th>
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-departamentos"/>" target="_parent">DEPARTAMENTOS</a></th>
-        <th class="row1"><a class="header_link" href="<s:url action="admin-console-pessoas"/>" target="_parent">PESSOA</a></th>
+        <th class="row1"><a class="header_link" href="<s:url action="admin-console-pessoas"/>" target="_parent">PESSOAS</a></th>
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-eleicoes"/>" target="_parent">ELEIÇÕES</a></th>
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-listas"/>" target="_parent">LISTAS</a></th>
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-mesas-voto"/>" target="_parent">MESAS DE VOTO</a></th>

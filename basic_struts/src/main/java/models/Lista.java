@@ -34,6 +34,14 @@ public class Lista extends Model implements Serializable {
         return nome;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public int getEleicao_id() {
+        return eleicao_id;
+    }
+
     public boolean setTipo(String tipo) {
         boolean flag;
         if (flag = Arrays.toString(new String[]{"Alunos", "Docentes", "Funcionarios"}).contains(tipo))
