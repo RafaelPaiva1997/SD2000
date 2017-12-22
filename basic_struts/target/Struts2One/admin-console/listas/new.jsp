@@ -17,7 +17,7 @@
         <tr>
             <td><s:label value="Eleicao:"/></td>
             <td>
-                <s:select dheaderKey="-1" headerValue="-- Seleccionar --"
+                <s:select headerKey="-1" headerValue="-- Seleccionar --"
                           list="eleicoes"
                           name="eleicao"
                           value="eleicaoDefault"/>

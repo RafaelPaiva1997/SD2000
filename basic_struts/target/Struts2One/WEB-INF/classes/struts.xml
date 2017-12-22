@@ -295,6 +295,60 @@
             <allowed-methods>addPessoa,removePessoa,voltar</allowed-methods>
         </action>
 
+
+
+
+        <action name="pessoas-add" class="actions.managers.models.Pessoas">
+            <result name="success" type="redirect">admin-console-pessoas.action</result>
+            <result name="input">/admin-console/pessoas/new.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+
+            <allowed-methods>add,voltar</allowed-methods>
+        </action>
+
+        <action name="pessoas-update" class="actions.managers.models.Pessoas">
+            <result name="success" type="redirect">admin-console-pessoas.action</result>
+            <result name="input">/admin-console/pessoas/edit.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+
+            <allowed-methods>update,voltar</allowed-methods>
+        </action>
+
+        <action name="pessoas-new" class="actions.managers.models.Pessoas" method="fetchDepartamentos">
+            <result name="success">/admin-console/pessoas/new.jsp</result>
+            <result name="input">/admin-console/pessoas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+        <action name="pessoas-edit" class="actions.managers.models.Pessoas" method="fetchPessoa">
+            <result name="success">/admin-console/pessoas/edit.jsp</result>
+            <result name="input">/admin-console/pessoas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+        <action name="pessoas-remove" class="actions.managers.models.Pessoas" method="remove">
+            <result name="success" type="redirect">admin-console-pessoas.action</result>
+            <result name="input">admin-console/pessoas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+        <action name="pessoas-details" class="actions.managers.models.Pessoas" method="fetchPessoa">
+            <result name="success">/admin-console/pessoas/details.jsp</result>
+            <result name="input">/admin-console/pessoas/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
     </package>
 
 </struts>

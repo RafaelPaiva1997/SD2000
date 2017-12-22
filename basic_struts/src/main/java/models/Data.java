@@ -48,6 +48,15 @@ public class Data implements Serializable {
         this.segundo = Integer.parseInt(segundo);
     }
 
+    public Data(String ano, String mes, String dia) {
+        this.ano = Integer.parseInt(ano);
+        this.mes = Integer.parseInt(mes);
+        this.dia = Integer.parseInt(dia);
+        hora = -1;
+        minuto = -1;
+        segundo = -1;
+    }
+
     public int getAno() {
         return ano;
     }

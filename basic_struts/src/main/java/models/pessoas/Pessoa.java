@@ -112,6 +112,10 @@ public class Pessoa extends Model implements Serializable {
         return admin;
     }
 
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public boolean setTipo(String tipo) {
         boolean flag;
