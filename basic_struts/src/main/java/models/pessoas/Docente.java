@@ -40,10 +40,12 @@ public class Docente extends Model implements Serializable {
     }
 
     public boolean setCargo(String cargo) {
-        boolean flag;
-        if (flag = (lenghtMaior(cargo, 0) &&
-                isAlpha(removeAccents(cargo))))
+        boolean flag = true;
+        if (lenghtMaior(cargo, 0) &&
+                isAlpha(cargo))
             this.cargo = cargo;
+        else
+            flag = false;
         return flag;
     }
 

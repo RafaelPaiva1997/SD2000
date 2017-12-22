@@ -51,12 +51,15 @@ public class Lista extends Model implements Serializable {
 
     @Override
     public boolean setNome(String nome) {
-        boolean flag ;
-        if (flag = (lenghtMaior(nome, 0) &&
-                isAlpha(removeAccents(nome))))
+        boolean flag = true;
+        if (lenghtMaior(nome, 0) &&
+                isAlpha(nome))
             this.nome = nome;
+        else
+            flag = false;
         return flag;
     }
+
     public void setEleicao_id(int eleicao_id) {
         this.eleicao_id = eleicao_id;
     }

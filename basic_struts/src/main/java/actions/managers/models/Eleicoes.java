@@ -166,7 +166,7 @@ public class Eleicoes extends ActionModel {
             } catch (NumberFormatException e) {
                 data_inicioError = "Por favor insira uma data de início só com números!";
             }
-            if (data_inicioError.equals("") && !eleicao.getData_inicio().equals(data_inicio) && !data_inicio.test())
+            if (data_inicioError.equals("") && !(new Data(eleicao.getData_inicio())).equals(data_inicio) && !data_inicio.test())
                 data_inicioError = "Por favor insira uma data de início válida!";
             eleicao.update("data_inicio", f.format(data_inicio.export()));
 
@@ -175,7 +175,7 @@ public class Eleicoes extends ActionModel {
             } catch (NumberFormatException e) {
                 data_fimError = "Por favor insira uma data de fim só com números!";
             }
-            if (data_fimError.equals("") && !eleicao.getData_fim().equals(data_fim) && !data_fim.test())
+            if (data_fimError.equals("") && !(new Data(eleicao.getData_fim())).equals(data_fim) && !data_fim.test())
                 data_fimError = "Por favor insira uma data de fim válida!";
             eleicao.update("data_fim", f.format(data_fim.export()));
 

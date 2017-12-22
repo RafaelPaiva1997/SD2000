@@ -12,6 +12,7 @@ import models.pessoas.Pessoa;
 import rmi.RMI;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -318,37 +319,79 @@ public class Pessoas extends ActionModel {
 
         try {
             Pessoa pessoa = (Pessoa) RMI.rmi.get("pessoas", "ID=" + id);
+            SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
 
-            if (!pessoa.getNome().equals(nome) && !pessoa.setNome(nome))
+            if (!pessoa.getNome().equals(nome) && !pessoa.update("nome", nome))
                 nomeError = "Por favor insira um nome só com letras!";
 
-            if (!pessoa.getUsername().equals(username) && !pessoa.setUsername(username))
+            if (!pessoa.getUsername().equals(username) && !pessoa.update("username", username))
                 usernameError = "Por favor insira um username válido!";
 
-            if (!pessoa.getPassword().equals(password) && !pessoa.setPassword(password))
-                passwordError = "Por favor insira um password válido!";
+            if (!pessoa.getPassword().equals(password) && !pessoa.update("password", password))
+                passwordError = "Por favor insira um username válido!";
 
-            if (!String.valueOf(pessoa.getTelemovel()).equals(telemovel) && !pessoa.setTelemovel(telemovel))
+            if (!String.valueOf(pessoa.getTelemovel()).equals(telemovel) && !pessoa.update("telemovel", String.valueOf(telemovel)))
                 telemovelError = "Por favor insira um numero de telemovel válido!";
 
-            if (!pessoa.getMorada().equals(morada) && !pessoa.setMorada(morada))
+            if (!pessoa.getMorada().equals(morada) && !pessoa.update("morada", morada))
                 moradaError = "Por favor insira uma morada valida!";
 
-            if (!pessoa.getCodigo_postal().equals(codigo_postal) && !pessoa.setCodigo_postal(codigo_postal))
+            if (!pessoa.getCodigo_postal().equals(codigo_postal) && !pessoa.update("codigo_postal", codigo_postal))
                 codigo_postalError = "Por favor insira um codigo postal válido!";
 
-            if (!pessoa.getLocalidade().equals(localidade) && !pessoa.setLocalidade(localidade))
+            if (!pessoa.getLocalidade().equals(localidade) && !pessoa.update("localidade", localidade))
                 localidadeError = "Por favor insira uma localidade válida!";
 
-            if (!String.valueOf(pessoa.getNumero_cc()).equals(numero_cc) && !pessoa.setNumero_cc(numero_cc))
+            if (!String.valueOf(pessoa.getNumero_cc()).equals(numero_cc) && !pessoa.update("numero_cc", numero_cc))
                 numero_ccError = "Por favor insira um numero de CC válida!";
 
-            if (!pessoa.getGenero().equals(genero) && !pessoa.setGenero(genero))
+            if (!pessoa.getGenero().equals(genero) && !pessoa.update("genero", genero))
                 generoError = "Por favor insira um genero válido!";
 
+            try {
+                validade_cc = new Data(validade_cc_ano, validade_cc_mes, validade_cc_dia);
+            } catch (NumberFormatException e) {
+                validade_ccError = "Por favor insira uma data de fim só com números!";
+            }
+            if (validade_ccError.equals("") && !(new Data(pessoa.getValidade_cc())).equals(validade_cc) && !validade_cc.test())
+                validade_ccError = "Por favor insira uma data de fim válida!";
+            pessoa.update("validade_cc", f.format(validade_cc.export()));
 
             try {
-                pessoa.setDepartamento_id(RMI.rmi.get("faculdades", "ID=" + departamento.split(" - ")[0]).getId());
+                data_nascimento = new Data(data_nascimento_ano, data_nascimento_mes, data_nascimento_dia);
+            } catch (NumberFormatException e) {
+                data_nascimentoError = "Por favor insira uma data de fim só com números!";
+            }
+            if (data_nascimentoError.equals("") && !(new Data(pessoa.getData_nascimento())).equals(data_nascimento) && !data_nascimento.test())
+                data_nascimentoError = "Por favor insira uma data de fim válida!";
+            pessoa.update("data_nascimento", f.format(data_nascimento.export()));
+
+            pessoa.update("admin", String.valueOf(admin));
+
+            Aluno aluno = new Aluno();
+            Docente docente = new Docente();
+            Funcionario funcionario = new Funcionario();
+
+            if (tipo.equals("Aluno")) {
+                aluno = (Aluno) RMI.rmi.get("alunos", "pessoa_id=" + id);
+                if (!aluno.getCurso().equals(curso) && !aluno.update("curso", curso))
+                    cursoError = "Por favor insira um curso só com letras!";
+
+                if (!String.valueOf(aluno.getNumero_aluno()).equals(numero_aluno) && !aluno.update("numero_aluno", numero_aluno))
+                    numero_alunoError = "Por favor insira um numero de aluno com 10 numeros!";
+            } else if (tipo.equals("Docente")) {
+                docente = (Docente) RMI.rmi.get("docentes", "pessoa_id=" + id);
+                if (!docente.getCargo().equals(cargo) && !docente.update("cargo", cargo))
+                    cargoError = "Por favor insira um cargo só com letras!";
+            } else if (!tipo.equals("Funcionario")) {
+                funcionario = (Funcionario) RMI.rmi.get("funcionarios", "pessoa_id=" + id);
+                if (!funcionario.getFuncao().equals(funcao) && !funcionario.update("funcao", funcao))
+                    funcaoError = "Por favor insira uma funcao só com letras!";
+            }
+
+            try {
+                if (!String.valueOf(pessoa.getDepartamento_id()).equals(departamento.split(" - ")[0]))
+                    pessoa.update("departamento_id", String.valueOf(RMI.rmi.get("departamentos", "ID=" + departamento.split(" - ")[0]).getId()));
 
                 if (nomeError.equals("") &&
                         usernameError.equals("") &&
@@ -365,20 +408,34 @@ public class Pessoas extends ActionModel {
                         numero_alunoError.equals("") &&
                         cargoError.equals("") &&
                         funcaoError.equals("")) {
+                    RMI.rmi.update(pessoa);
 
-                    RMI.rmi.insert(pessoa);
+                    if (tipo.equals("Aluno")) {
+                        RMI.rmi.update(aluno);
+                    } else if (tipo.equals("Docente")) {
+                        RMI.rmi.update(docente);
+                    } else if (tipo.equals("Funcionario")) {
+                        RMI.rmi.update(funcionario);
+                    }
+
                     return SUCCESS;
                 }
 
                 pessoa.updateClear();
+                aluno.updateClear();
+                docente.updateClear();
+                funcionario.updateClear();
                 fillDepartamentos();
                 return INPUT;
             } catch (RemoteException | InvalidFormatException e) {
                 addActionError(e.getMessage());
-                e.printStackTrace();
                 return "rmi-error";
             } catch (EmptyQueryException eqe) {
-                departamentoError = "Erro ao seleccionar a faculdade!";
+                departamentoError = "Erro ao seleccionar o departamento!";
+                pessoa.updateClear();
+                aluno.updateClear();
+                docente.updateClear();
+                funcionario.updateClear();
                 fillDepartamentos();
                 return INPUT;
             }

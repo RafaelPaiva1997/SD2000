@@ -32,12 +32,15 @@ public class Departamento extends Model {
 
     @Override
     public boolean setNome(String nome) {
-        boolean flag ;
-        if (flag = (lenghtMaior(nome, 0) &&
-                isAlpha(removeAccents(nome))))
+        boolean flag = true;
+        if (lenghtMaior(nome, 0) &&
+                isAlpha(nome))
             this.nome = nome;
+        else
+            flag = false;
         return flag;
     }
+
 
     public void setFaculdade_id(int faculdade_id) {
         this.faculdade_id = faculdade_id;

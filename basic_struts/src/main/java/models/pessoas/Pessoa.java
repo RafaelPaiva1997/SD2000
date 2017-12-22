@@ -112,6 +112,7 @@ public class Pessoa extends Model implements Serializable {
         return admin;
     }
 
+    @Override
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
@@ -126,10 +127,12 @@ public class Pessoa extends Model implements Serializable {
 
     @Override
     public boolean setNome(String nome) {
-        boolean flag ;
-        if (flag = (lenghtMaior(nome, 0) &&
-                isAlpha(removeAccents(nome))))
+        boolean flag = true;
+        if (lenghtMaior(nome, 0) &&
+                isAlpha(nome))
             this.nome = nome;
+        else
+            flag = false;
         return flag;
     }
 
@@ -201,10 +204,13 @@ public class Pessoa extends Model implements Serializable {
 
     @Override
     public boolean setLocalidade(String localidade) {
-        boolean flag ;
-        if (flag =(lenghtMaior(localidade, 0) &&
-                isAlpha(removeAccents(localidade))))
-            this.localidade=localidade;
+        boolean flag = true;
+        if (lenghtMaior(localidade, 0) &&
+                isAlpha(localidade))
+            this.localidade = localidade;
+        else {
+            flag = false;
+        }
         return flag;
     }
 

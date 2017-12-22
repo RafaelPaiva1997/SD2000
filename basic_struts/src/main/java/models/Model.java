@@ -209,6 +209,13 @@ public abstract class Model implements Serializable {
                 flag = true;
                 addString(param, value);
                 break;
+            case "admin":
+                flag = true;
+                if (value.equals("true"))
+                    addValue(param, "1");
+                else
+                    addValue(param, "0");
+                break;
             default:
                 flag = false;
                 break;
@@ -218,6 +225,10 @@ public abstract class Model implements Serializable {
 
     public void updateClear() {
         update.clear();
+    }
+
+    public void setAdmin(boolean admin) {
+
     }
 
     public boolean setTipo(String tipo) {

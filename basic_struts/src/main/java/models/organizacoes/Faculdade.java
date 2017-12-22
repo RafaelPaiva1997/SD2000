@@ -31,12 +31,15 @@ public class Faculdade extends Model implements Serializable {
 
     @Override
     public boolean setNome(String nome) {
-        boolean flag ;
-        if (flag = (lenghtMaior(nome, 0) &&
-                isAlpha(removeAccents(nome))))
+        boolean flag = true;
+        if (lenghtMaior(nome, 0) &&
+                isAlpha(nome))
             this.nome = nome;
+        else
+            flag = false;
         return flag;
     }
+
 
     @Override
     public String sqlInsert() {

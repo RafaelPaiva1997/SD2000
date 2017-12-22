@@ -39,10 +39,12 @@ public class Funcionario extends Model implements Serializable {
 
     @Override
     public boolean setFuncao(String funcao) {
-        boolean flag;
-        if (flag = (lenghtMaior(funcao, 0) &&
-                isAlpha(removeAccents(funcao))))
+        boolean flag = true;
+        if (lenghtMaior(funcao, 0) &&
+                isAlpha(funcao))
             this.funcao = funcao;
+        else
+            flag = false;
         return flag;
     }
 

@@ -122,7 +122,7 @@
         </tr>
         <tr>
             <td><s:submit method="voltar" value="Voltar"/></td>
-            <td><s:submit method="add"/></td>
+            <td><s:submit method="update"/></td>
         </tr>
     </table>
 </s:form>
