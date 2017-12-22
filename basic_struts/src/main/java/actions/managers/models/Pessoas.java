@@ -85,6 +85,8 @@ public class Pessoas extends ActionModel {
         cursoError = "";
         cargoError = "";
         funcaoError = "";
+        departamentos = new ArrayList<>();
+        pessoas = new ArrayList<>();
     }
 
     public String fillPessoas() {
@@ -93,7 +95,7 @@ public class Pessoas extends ActionModel {
             return SUCCESS;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());
-            return "rmi-Error";
+            return "rmi-error";
         } catch (EmptyQueryException eqe) {
             pessoas = new ArrayList<>();
             return SUCCESS;
@@ -158,30 +160,30 @@ public class Pessoas extends ActionModel {
                 Pessoa pessoa = (Pessoa) RMI.rmi.get("pessoas", "ID=" + id);
                 Aluno aluno = (Aluno) RMI.rmi.get("alunos", "pessoa_id=" + id);
                 getInfo(pessoa, aluno);
-                return SUCCESS;
+                return fillDepartamentos();
             } catch (RemoteException | EmptyQueryException | InvalidFormatException e) {
                 addActionMessage(e.getMessage());
-                return "rmi-Error";
+                return "rmi-error";
             }
         } else if (tipo.equals("Docente")) {
             try {
                 Pessoa pessoa = (Pessoa) RMI.rmi.get("pessoas", "ID=" + id);
                 Docente docente = (Docente) RMI.rmi.get("docentes", "pessoa_id=" + id);
                 getInfo(pessoa, docente);
-                return SUCCESS;
+                return fillDepartamentos();
             } catch (RemoteException | EmptyQueryException | InvalidFormatException e) {
                 addActionMessage(e.getMessage());
-                return "rmi-Error";
+                return "rmi-error";
             }
         } else if (tipo.equals("Funcionario")) {
             try {
                 Pessoa pessoa = (Pessoa) RMI.rmi.get("pessoas", "ID=" + id);
                 Funcionario funcionario = (Funcionario) RMI.rmi.get("funcionarios", "pessoa_id=" + id);
                 getInfo(pessoa, funcionario);
-                return SUCCESS;
+                return fillDepartamentos();
             } catch (RemoteException | EmptyQueryException | InvalidFormatException e) {
                 addActionMessage(e.getMessage());
-                return "rmi-Error";
+                return "rmi-error";
             }
         }
 
@@ -240,7 +242,8 @@ public class Pessoas extends ActionModel {
         if (data_nascimentoError.equals("") && !data_nascimento.test())
             data_nascimentoError = "Por favor insira uma data de início válida!";
         pessoa.setData_nascimento(data_nascimento.export());
-        
+
+        pessoa.setTipo(tipo);
         pessoa.setAdmin(admin);
 
         Aluno aluno = new Aluno();
@@ -263,7 +266,7 @@ public class Pessoas extends ActionModel {
 
         try {
 
-            pessoa.setDepartamento_id(RMI.rmi.get("faculdades", "ID=" + departamento.split(" - ")[0]).getId());
+            pessoa.setDepartamento_id(RMI.rmi.get("departamentos", "ID=" + departamento.split(" - ")[0]).getId());
 
             if (nomeError.equals("") &&
                     usernameError.equals("") &&
@@ -283,13 +286,13 @@ public class Pessoas extends ActionModel {
                 RMI.rmi.insert(pessoa);
 
                 if (tipo.equals("Aluno")) {
-                    aluno.setId(RMI.rmi.get("pessoas", "username=" + pessoa.getUsername()).getId());
+                    aluno.setId(RMI.rmi.get("pessoas", "username='" + pessoa.getUsername() + "'").getId());
                     RMI.rmi.insert(aluno);
                 } else if (tipo.equals("Docente")) {
-                    docente.setId(RMI.rmi.get("pessoas", "username=" + pessoa.getUsername()).getId());
+                    docente.setId(RMI.rmi.get("pessoas", "username='" + pessoa.getUsername() + "'").getId());
                     RMI.rmi.insert(docente);
                 } else if (tipo.equals("Funcionario")) {
-                    funcionario.setId(RMI.rmi.get("pessoas", "username=" + pessoa.getUsername()).getId());
+                    funcionario.setId(RMI.rmi.get("pessoas", "username='" + pessoa.getUsername() + "'").getId());
                     RMI.rmi.insert(funcionario);
                 }
 
@@ -300,10 +303,10 @@ public class Pessoas extends ActionModel {
             return INPUT;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());
-            return "rmi-Error";
+            return "rmi-error";
         } catch (EmptyQueryException eqe) {
-            departamentoError = "Erro ao seleccionar a faculdade!";
-            fillPessoas();
+            departamentoError = "Erro ao seleccionar o departamento!";
+            fillDepartamentos();
             return INPUT;
         }
     }
@@ -373,7 +376,7 @@ public class Pessoas extends ActionModel {
             } catch (RemoteException | InvalidFormatException e) {
                 addActionError(e.getMessage());
                 e.printStackTrace();
-                return "rmi-Error";
+                return "rmi-error";
             } catch (EmptyQueryException eqe) {
                 departamentoError = "Erro ao seleccionar a faculdade!";
                 fillDepartamentos();
@@ -382,7 +385,7 @@ public class Pessoas extends ActionModel {
         } catch (RemoteException | InvalidFormatException | EmptyQueryException e) {
             addActionError(e.getMessage());
             e.printStackTrace();
-            return "rmi-Error";
+            return "rmi-error";
         }
     }
 
@@ -402,7 +405,7 @@ public class Pessoas extends ActionModel {
             return SUCCESS;
         } catch (RemoteException | InvalidFormatException e) {
             addActionError(e.getMessage());
-            return "rmi-Error";
+            return "rmi-error";
         } catch (EmptyQueryException eqe) {
             addActionError("Não existem departamentos, por favor adicione um!");
             fillDepartamentos();
@@ -429,7 +432,7 @@ public class Pessoas extends ActionModel {
             return SUCCESS;
         } catch (RemoteException e) {
             addActionError(e.getMessage());
-            return "rmi-Error";
+            return "rmi-error";
         }
     }
 

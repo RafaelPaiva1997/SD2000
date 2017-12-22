@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
@@ -6,7 +7,6 @@
 <body>
 <h1>Novo <s:property value="tipo"/></h1>
 <s:form action="pessoas-add">
-    <s:hidden name="id" value="%{id}"/>
     <s:hidden name="tipo" value="%{tipo}"/>
     <table>
         <tr>
@@ -17,12 +17,12 @@
         <tr>
             <td><s:label value="Username:"/></td>
             <td><s:textfield name="username" size="30"/></td>
-            <td><s:fielderror fieldName="username"><s:property value="usernameERROR"/></s:fielderror></td>
+            <td><s:fielderror fieldName="username"><s:property value="usernameError"/></s:fielderror></td>
         </tr>
         <tr>
             <td><s:label value="Password:"/></td>
             <td><s:textfield name="password" size="30"/></td>
-            <td><s:fielderror fieldName="password"><s:property value="passwordERROR"/></s:fielderror></td>
+            <td><s:fielderror fieldName="password"><s:property value="passwordError"/></s:fielderror></td>
         </tr>
         <tr>
             <td><s:label value="Telemovel:"/></td>
@@ -32,12 +32,12 @@
         <tr>
             <td><s:label value="Localidade:"/></td>
             <td><s:textfield name="localidade" size="30"/></td>
-            <td><s:fielderror fieldName="localidade"><s:property value="localidadeERROR"/></s:fielderror></td>
+            <td><s:fielderror fieldName="localidade"><s:property value="localidadeError"/></s:fielderror></td>
         </tr>
         <tr>
             <td><s:label value="Codigo postal:"/></td>
             <td><s:textfield name="codigo_postal" size="30"/></td>
-            <td><s:fielderror fieldName="codigo_postal"><s:property value="codigo_postalERROR"/></s:fielderror></td>
+            <td><s:fielderror fieldName="codigo_postal"><s:property value="codigo_postalError"/></s:fielderror></td>
         </tr>
         <tr>
             <td><s:label value="Morada:"/></td>
@@ -91,7 +91,7 @@
                 <s:textfield name="data_nascimento_mes" size="2"/> /
                 <s:textfield name="data_nascimento_ano" size="4"/>
             </td>
-            <td><s:fielderror fieldName="data_nascimento"><s:property value="data_nascimentoERROR"/></s:fielderror></td>
+            <td><s:fielderror fieldName="data_nascimento"><s:property value="data_nascimentoError"/></s:fielderror></td>
         </tr>
         </tr>
         <tr>
@@ -111,7 +111,7 @@
                           list="{'Masculino','Feminino','Outro'}"
                           name="genero"/>
             </td>
-            <td><s:fielderror fieldName="genero"><s:property value="generoERROR"/></s:fielderror></td>
+            <td><s:fielderror fieldName="genero"><s:property value="generoError"/></s:fielderror></td>
         </tr>
         <tr>
             <td><s:label value="Admin:"/></td>

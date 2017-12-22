@@ -108,12 +108,14 @@
             <result name="success">/admin-console/faculdades/new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
             <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="faculdades-edit" class="actions.managers.models.Faculdades" method="validateAdmin">
             <result name="success">/admin-console/faculdades/edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
             <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="faculdades-remove" class="actions.managers.models.Faculdades" method="remove">

@@ -222,7 +222,7 @@ public class Pessoa extends Model implements Serializable {
     @Override
     public boolean setGenero(String genero) {
         boolean flag = true;
-        if (genero.matches("Femenino") ||
+        if (genero.matches("Feminino") ||
                 genero.matches("Masculino") ||
                 genero.matches("Outro"))
             this.genero = genero;
