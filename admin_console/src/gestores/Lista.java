@@ -101,7 +101,7 @@ public class Lista {
                 "Por favor insira um nome só com letras!\n",
                 () -> !lista.setNome(sc.nextLine()));
 
-        if (eleicao.getTipo().equals("conselho geral")) {
+        if (eleicao.getTipo().equals("Conselho geral")) {
             getProperty("Escolha o tipo de lista a inserir:\n" +
                             "1 - Lista Alunos\n" +
                             "2 - Lista Docentes\n" +
@@ -110,14 +110,14 @@ public class Lista {
                     () -> !contains(new int[]{1, 2, 3}, r1 = sc.nextInt()));
 
             if (r1 == 1)
-                lista.setTipo("alunos");
+                lista.setTipo("Alunos");
             else if (r1 == 2)
-                lista.setTipo("docentes");
+                lista.setTipo("Docentes");
             else
-                lista.setTipo("funcionarios");
+                lista.setTipo("Funcionarios");
         }
         else
-            lista.setTipo("alunos");
+            lista.setTipo("Alunos");
 
         rmi.insert(lista);
     }

@@ -161,7 +161,7 @@ public class Pessoa {
         sc.nextLine();
 
         if (r1 == 1) {
-            pessoa.setTipo("aluno");
+            pessoa.setTipo("Aluno");
             rmi.insert(pessoa);
             try {
                 aluno = new Aluno(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
@@ -180,7 +180,7 @@ public class Pessoa {
 
             rmi.insert(aluno);
         } else if (r1 == 2) {
-            pessoa.setTipo("docente");
+            pessoa.setTipo("Docente");
             rmi.insert(pessoa);
             try {
                 docente = new Docente(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
@@ -195,7 +195,7 @@ public class Pessoa {
 
             rmi.insert(docente);
         } else {
-            pessoa.setTipo("funcionario");
+            pessoa.setTipo("Funcionario");
             rmi.insert(pessoa);
             try {
                 funcionario = new Funcionario(rmi.get("Pessoas", "numero_cc = " + pessoa.getNumero_cc()).getId());
@@ -226,9 +226,9 @@ public class Pessoa {
                     "Número CC - Validade CC - Género\n" +
                     "Data Nascimento - ";
 
-            if (pessoa.getTipo().equals("aluno"))
+            if (pessoa.getTipo().equals("Aluno"))
                 s1 = s1 + "Nº Aluno - Curso\n";
-            else if (pessoa.getTipo().equals("docente"))
+            else if (pessoa.getTipo().equals("Docente"))
                 s1 = s1 + "Cargo\n";
             else
                 s1 = s1 + "Função\n";
@@ -262,18 +262,18 @@ public class Pessoa {
                                     "listas",
                                     "voto"
                             }, r2 = sc.nextLine()) ||
-                                    pessoa.getTipo().equals("aluno") && contains(new String[]{
+                                    pessoa.getTipo().equals("Aluno") && contains(new String[]{
                                             "nºaluno",
                                             "no aluno",
                                             "curso"
                                     }, r2) ||
-                                    pessoa.getTipo().equals("docente") && contains(new String[]{
+                                    pessoa.getTipo().equals("Docente") && contains(new String[]{
                                             "função",
                                             "funçao",
                                             "funcão",
                                             "funcao"
                                     }, r2) ||
-                                    pessoa.getTipo().equals("funcionario") && r2.toLowerCase().equals("cargo"));
+                                    pessoa.getTipo().equals("Funcionario") && r2.toLowerCase().equals("cargo"));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -433,9 +433,9 @@ public class Pessoa {
 
         System.out.print(pessoa.print());
         try {
-            if (pessoa.getTipo().equals("aluno"))
+            if (pessoa.getTipo().equals("Aluno"))
                 System.out.print(((Aluno) rmi.get("Alunos", "pessoa_id = " + pessoa.getId())).print());
-            else if (pessoa.getTipo().equals("docente"))
+            else if (pessoa.getTipo().equals("Docente"))
                 System.out.print(((Docente) rmi.get("Docentes", "pessoa_id = " + pessoa.getId())).print());
             else
                 System.out.print(((Funcionario) rmi.get("Funcionarios", "pessoa_id = " + pessoa.getId())).print());

@@ -205,11 +205,11 @@ public class Eleicao {
             int contador4 = 0;
 
             for (Voto v : votos) {
-                if (v.getTipo().equals("nulo"))
+                if (v.getTipo().equals("Nulo"))
                     contador2++;
                 else {
                     contador1++;
-                    if (v.getTipo().equals("branco"))
+                    if (v.getTipo().equals("Branco"))
                         contador4++;
                 }
             }
