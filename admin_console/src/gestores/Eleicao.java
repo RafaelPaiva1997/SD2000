@@ -1,18 +1,13 @@
 package gestores;
 
-
-import models.Lista;
-import models.Voto;
 import models.eleicoes.ConselhoGeral;
 import models.eleicoes.NucleoEstudantes;
 
 import java.rmi.RemoteException;
-import java.util.Date;
 import java.util.function.BooleanSupplier;
 import java.text.SimpleDateFormat;
 
-import static adminconsole.AdminConsole.*;
-
+import static main.AdminConsole.*;
 
 public class Eleicao {
     public static void menu() {

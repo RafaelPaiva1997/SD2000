@@ -3,12 +3,11 @@ package gestores;
 import com.sun.media.sound.InvalidFormatException;
 import exceptions.EmptyQueryException;
 import models.MesadeVoto;
-import models.organizacoes.Faculdade;
 
 import java.rmi.RemoteException;
 import java.util.function.BooleanSupplier;
 
-import static adminconsole.AdminConsole.*;
+import static main.AdminConsole.*;
 
 public class Departamento {
 

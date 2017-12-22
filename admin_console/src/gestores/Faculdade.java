@@ -4,7 +4,7 @@ package gestores;
 import java.rmi.RemoteException;
 import java.util.function.BooleanSupplier;
 
-import static adminconsole.AdminConsole.*;
+import static main.AdminConsole.*;
 
 public class Faculdade {
 

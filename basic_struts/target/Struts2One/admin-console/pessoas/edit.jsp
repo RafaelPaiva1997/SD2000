@@ -3,6 +3,20 @@
 <html>
 <head>
     <title>Novo <s:property value="tipo"/></title>
+    <style>
+        .link2 {
+            background-color: midnightblue;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .link2:hover, .link2:active {
+            background-color: deepskyblue;
+        }
+    </style>
 </head>
 <body>
 <h1>Novo <s:property value="tipo"/></h1>
@@ -121,8 +135,8 @@
             <td><s:fielderror fieldName="admin"><s:property value="adminError"/></s:fielderror></td>
         </tr>
         <tr>
-            <td><s:submit method="voltar" value="Voltar"/></td>
-            <td><s:submit method="update"/></td>
+            <td><s:submit method="voltar" value="Voltar" cssClass="link2"/></td>
+            <td><s:submit method="update" value="Actualizar" cssClass="link2"/></td>
         </tr>
     </table>
 </s:form>

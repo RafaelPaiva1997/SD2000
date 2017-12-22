@@ -23,13 +23,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Eleicoes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/actions/managers/models/Eleicoes.java">
+      <file leaf-file-name="Departamento.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Departamento.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="206" column="8" lean-forward="true" selection-start-line="206" selection-start-column="8" selection-end-line="210" selection-end-column="9" />
+            <state relative-caret-position="117">
+              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
-                <element signature="method#getDepartamentoById#0;class#Eleicoes#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,222 +45,81 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/index.jsp">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="65" />
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pessoas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/actions/managers/models/Pessoas.java">
+      <file leaf-file-name="Data.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Data.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="131" column="33" lean-forward="true" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
+            <state relative-caret-position="30">
+              <caret line="2" column="34" lean-forward="false" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Eleicao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Eleicao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
               <folding>
-                <element signature="e#19953#19954#0" expanded="true" />
-                <element signature="e#19978#19979#0" expanded="true" />
-                <element signature="e#20011#20012#0" expanded="true" />
-                <element signature="e#20039#20040#0" expanded="true" />
-                <element signature="e#20070#20071#0" expanded="true" />
-                <element signature="e#20097#20098#0" expanded="true" />
-                <element signature="e#20137#20138#0" expanded="true" />
-                <element signature="e#20169#20170#0" expanded="true" />
-                <element signature="e#20200#20201#0" expanded="true" />
-                <element signature="e#20227#20228#0" expanded="true" />
-                <element signature="e#20267#20268#0" expanded="true" />
-                <element signature="e#20299#20300#0" expanded="true" />
-                <element signature="e#20335#20336#0" expanded="true" />
-                <element signature="e#20367#20368#0" expanded="true" />
-                <element signature="e#20402#20403#0" expanded="true" />
-                <element signature="e#20433#20434#0" expanded="true" />
-                <element signature="e#20481#20482#0" expanded="true" />
-                <element signature="e#20521#20522#0" expanded="true" />
-                <element signature="e#20560#20561#0" expanded="true" />
-                <element signature="e#20595#20596#0" expanded="true" />
-                <element signature="e#20651#20652#0" expanded="true" />
-                <element signature="e#20699#20700#0" expanded="true" />
-                <element signature="e#20743#20744#0" expanded="true" />
-                <element signature="e#20783#20784#0" expanded="true" />
-                <element signature="e#20815#20816#0" expanded="true" />
-                <element signature="e#20843#20844#0" expanded="true" />
-                <element signature="e#20885#20886#0" expanded="true" />
-                <element signature="e#20919#20920#0" expanded="true" />
-                <element signature="e#20956#20957#0" expanded="true" />
-                <element signature="e#20989#20990#0" expanded="true" />
-                <element signature="e#21041#21042#0" expanded="true" />
-                <element signature="e#21085#21086#0" expanded="true" />
-                <element signature="e#21117#21118#0" expanded="true" />
-                <element signature="e#21145#21146#0" expanded="true" />
-                <element signature="e#21187#21188#0" expanded="true" />
-                <element signature="e#21221#21222#0" expanded="true" />
-                <element signature="e#21258#21259#0" expanded="true" />
-                <element signature="e#21291#21292#0" expanded="true" />
-                <element signature="e#21343#21344#0" expanded="true" />
-                <element signature="e#21387#21388#0" expanded="true" />
-                <element signature="e#21420#21421#0" expanded="true" />
-                <element signature="e#21449#21450#0" expanded="true" />
-                <element signature="e#21493#21494#0" expanded="true" />
-                <element signature="e#21529#21530#0" expanded="true" />
-                <element signature="e#21567#21568#0" expanded="true" />
-                <element signature="e#21601#21602#0" expanded="true" />
-                <element signature="e#21655#21656#0" expanded="true" />
-                <element signature="e#21701#21702#0" expanded="true" />
-                <element signature="e#21752#21753#0" expanded="true" />
-                <element signature="e#21788#21789#0" expanded="true" />
-                <element signature="e#21857#21858#0" expanded="true" />
-                <element signature="e#21907#21908#0" expanded="true" />
-                <element signature="e#21947#21948#0" expanded="true" />
-                <element signature="e#21983#21984#0" expanded="true" />
-                <element signature="e#22041#22042#0" expanded="true" />
-                <element signature="e#22091#22092#0" expanded="true" />
-                <element signature="e#22126#22127#0" expanded="true" />
-                <element signature="e#22157#22158#0" expanded="true" />
-                <element signature="e#22205#22206#0" expanded="true" />
-                <element signature="e#22245#22246#0" expanded="true" />
-                <element signature="e#22285#22286#0" expanded="true" />
-                <element signature="e#22321#22322#0" expanded="true" />
-                <element signature="e#22359#22360#0" expanded="true" />
-                <element signature="e#22393#22394#0" expanded="true" />
-                <element signature="e#22447#22448#0" expanded="true" />
-                <element signature="e#22493#22494#0" expanded="true" />
-                <element signature="e#22551#22552#0" expanded="true" />
-                <element signature="e#22601#22602#0" expanded="true" />
-                <element signature="e#22640#22641#0" expanded="true" />
-                <element signature="e#22678#22679#0" expanded="true" />
-                <element signature="e#22737#22738#0" expanded="true" />
-                <element signature="e#22791#22792#0" expanded="true" />
-                <element signature="e#22830#22831#0" expanded="true" />
-                <element signature="e#22865#22866#0" expanded="true" />
-                <element signature="e#22921#22922#0" expanded="true" />
-                <element signature="e#22969#22970#0" expanded="true" />
-                <element signature="e#23015#23016#0" expanded="true" />
-                <element signature="e#23057#23058#0" expanded="true" />
-                <element signature="e#23127#23128#0" expanded="true" />
-                <element signature="e#23189#23190#0" expanded="true" />
-                <element signature="e#23233#23234#0" expanded="true" />
-                <element signature="e#23273#23274#0" expanded="true" />
-                <element signature="e#23339#23340#0" expanded="true" />
-                <element signature="e#23397#23398#0" expanded="true" />
-                <element signature="e#23433#23434#0" expanded="true" />
-                <element signature="e#23465#23466#0" expanded="true" />
-                <element signature="e#23515#23516#0" expanded="true" />
-                <element signature="e#23557#23558#0" expanded="true" />
-                <element signature="e#23598#23599#0" expanded="true" />
-                <element signature="e#23635#23636#0" expanded="true" />
-                <element signature="e#23695#23696#0" expanded="true" />
-                <element signature="e#23747#23748#0" expanded="true" />
-                <element signature="e#23780#23781#0" expanded="true" />
-                <element signature="e#23809#23810#0" expanded="true" />
-                <element signature="e#23853#23854#0" expanded="true" />
-                <element signature="e#23889#23890#0" expanded="true" />
-                <element signature="e#23927#23928#0" expanded="true" />
-                <element signature="e#23961#23962#0" expanded="true" />
-                <element signature="e#24015#24016#0" expanded="true" />
-                <element signature="e#24061#24062#0" expanded="true" />
-                <element signature="e#24101#24102#0" expanded="true" />
-                <element signature="e#24137#24138#0" expanded="true" />
-                <element signature="e#24195#24196#0" expanded="true" />
-                <element signature="e#24245#24246#0" expanded="true" />
-                <element signature="e#24290#24291#0" expanded="true" />
-                <element signature="e#24331#24332#0" expanded="true" />
-                <element signature="e#24399#24400#0" expanded="true" />
-                <element signature="e#24459#24460#0" expanded="true" />
-                <element signature="e#24496#24497#0" expanded="true" />
-                <element signature="e#24529#24530#0" expanded="true" />
-                <element signature="e#24581#24582#0" expanded="true" />
-                <element signature="e#24625#24626#0" expanded="true" />
-                <element signature="e#24667#24668#0" expanded="true" />
-                <element signature="e#24705#24706#0" expanded="true" />
-                <element signature="e#24767#24768#0" expanded="true" />
-                <element signature="e#24821#24822#0" expanded="true" />
-                <element signature="e#24857#24858#0" expanded="true" />
-                <element signature="e#24889#24890#0" expanded="true" />
-                <element signature="e#24939#24940#0" expanded="true" />
-                <element signature="e#24981#24982#0" expanded="true" />
-                <element signature="e#25022#25023#0" expanded="true" />
-                <element signature="e#25059#25060#0" expanded="true" />
-                <element signature="e#25102#25103#0" expanded="true" />
-                <element signature="e#25141#25142#0" expanded="true" />
-                <element signature="e#25205#25206#0" expanded="true" />
-                <element signature="e#25261#25262#0" expanded="true" />
-                <element signature="e#25294#25295#0" expanded="true" />
-                <element signature="e#25323#25324#0" expanded="true" />
-                <element signature="e#25367#25368#0" expanded="true" />
-                <element signature="e#25403#25404#0" expanded="true" />
-                <element signature="e#25441#25442#0" expanded="true" />
-                <element signature="e#25475#25476#0" expanded="true" />
-                <element signature="e#25529#25530#0" expanded="true" />
-                <element signature="e#25575#25576#0" expanded="true" />
-                <element signature="e#25622#25623#0" expanded="true" />
-                <element signature="e#25665#25666#0" expanded="true" />
-                <element signature="e#25844#25845#0" expanded="true" />
-                <element signature="e#25882#25883#0" expanded="true" />
-                <element signature="e#25944#25945#0" expanded="true" />
-                <element signature="e#25998#25999#0" expanded="true" />
-                <element signature="e#26040#26041#0" expanded="true" />
-                <element signature="e#26078#26079#0" expanded="true" />
-                <element signature="e#26140#26141#0" expanded="true" />
-                <element signature="e#26194#26195#0" expanded="true" />
-                <element signature="e#26236#26237#0" expanded="true" />
-                <element signature="e#26274#26275#0" expanded="true" />
-                <element signature="e#26336#26337#0" expanded="true" />
-                <element signature="e#26390#26391#0" expanded="true" />
-                <element signature="e#26435#26436#0" expanded="true" />
-                <element signature="e#26465#26466#0" expanded="true" />
-                <element signature="e#26497#26498#0" expanded="true" />
-                <element signature="e#26525#26526#0" expanded="true" />
-                <element signature="e#26568#26569#0" expanded="true" />
-                <element signature="e#26602#26603#0" expanded="true" />
-                <element signature="e#26659#26660#0" expanded="true" />
-                <element signature="e#26697#26698#0" expanded="true" />
-                <element signature="e#26747#26748#0" expanded="true" />
-                <element signature="e#26789#26790#0" expanded="true" />
-                <element signature="e#26849#26850#0" expanded="true" />
-                <element signature="e#26901#26902#0" expanded="true" />
-                <element signature="e#26943#26944#0" expanded="true" />
-                <element signature="e#26981#26982#0" expanded="true" />
-                <element signature="e#27043#27044#0" expanded="true" />
-                <element signature="e#27097#27098#0" expanded="true" />
-                <element signature="e#27139#27140#0" expanded="true" />
-                <element signature="e#27177#27178#0" expanded="true" />
-                <element signature="e#27239#27240#0" expanded="true" />
-                <element signature="e#27293#27294#0" expanded="true" />
-                <element signature="e#27335#27336#0" expanded="true" />
-                <element signature="e#27373#27374#0" expanded="true" />
-                <element signature="e#27435#27436#0" expanded="true" />
-                <element signature="e#27489#27490#0" expanded="true" />
-                <element signature="e#27525#27526#0" expanded="true" />
-                <element signature="e#27559#27560#0" expanded="true" />
-                <element signature="e#27611#27612#0" expanded="true" />
-                <element signature="e#27657#27658#0" expanded="true" />
-                <element signature="e#27699#27700#0" expanded="true" />
-                <element signature="e#27739#27740#0" expanded="true" />
-                <element signature="e#27803#27804#0" expanded="true" />
-                <element signature="e#27861#27862#0" expanded="true" />
-                <element signature="e#27907#27908#0" expanded="true" />
-                <element signature="e#27949#27950#0" expanded="true" />
-                <element signature="e#28019#28020#0" expanded="true" />
-                <element signature="e#28081#28082#0" expanded="true" />
-                <element signature="e#28127#28128#0" expanded="true" />
-                <element signature="e#28169#28170#0" expanded="true" />
-                <element signature="e#28239#28240#0" expanded="true" />
-                <element signature="e#28301#28302#0" expanded="true" />
-                <element signature="e#28347#28348#0" expanded="true" />
-                <element signature="e#28389#28390#0" expanded="true" />
-                <element signature="e#28459#28460#0" expanded="true" />
-                <element signature="e#28521#28522#0" expanded="true" />
-                <element signature="e#28561#28562#0" expanded="true" />
-                <element signature="e#28599#28600#0" expanded="true" />
-                <element signature="e#28659#28660#0" expanded="true" />
-                <element signature="e#28713#28714#0" expanded="true" />
-                <element signature="e#28759#28760#0" expanded="true" />
-                <element signature="e#28803#28804#0" expanded="true" />
-                <element signature="e#29007#29008#0" expanded="true" />
-                <element signature="e#29065#29066#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Faculdade.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Faculdade.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lista.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Lista.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MesadeVoto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/MesadeVoto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pessoa.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Pessoa.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6309">
+              <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -269,58 +128,8 @@
       <file leaf-file-name="edit.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/edit.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1650">
-              <caret line="110" column="63" lean-forward="false" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="82" column="6" lean-forward="true" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="details.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/details.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="131" column="35" lean-forward="false" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="details.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/eleicoes/details.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/models/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="229" column="41" lean-forward="true" selection-start-line="229" selection-start-column="41" selection-end-line="229" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Pessoa.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/models/pessoas/Pessoa.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="115" column="24" lean-forward="false" selection-start-line="115" selection-start-column="24" selection-end-line="115" selection-end-column="24" />
+            <state relative-caret-position="-234">
+              <caret line="110" column="13" lean-forward="true" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -366,9 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/actions/ActionModel.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin-console/faculdades/new.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/admin-console/faculdades/edit.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/models/eleicoes/Eleicao.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/managers/organizacoes/Eleicoes.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/managers/organizacoes/Departamentos.java" />
@@ -391,16 +197,11 @@
         <option value="$PROJECT_DIR$/src/main/webapp/admin-console/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin-console/listas/edit.jsp" />
-        <option value="$PROJECT_DIR$/../admin_console/src/gestores/MesadeVoto.java" />
-        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Departamento.java" />
-        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Eleicao.java" />
-        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Pessoa.java" />
         <option value="$PROJECT_DIR$/../admin_console/src/AdminConsole.java" />
         <option value="$PROJECT_DIR$/src/main/java/rmi/RMIInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/managers/models/Faculdades.java" />
         <option value="$PROJECT_DIR$/src/main/java/actions/managers/models/Departamentos.java" />
         <option value="$PROJECT_DIR$/../rmi/src/RMI.java" />
-        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Lista.java" />
         <option value="$PROJECT_DIR$/src/main/java/models/Lista.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin-console/listas/index.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/actions/managers/models/Listas.java" />
@@ -417,6 +218,14 @@
         <option value="$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/new.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/actions/managers/models/Pessoas.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/details.jsp" />
+        <option value="$PROJECT_DIR$/../admin_console/src/main/AdminConsole.java" />
+        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Departamento.java" />
+        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Data.java" />
+        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Eleicao.java" />
+        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Faculdade.java" />
+        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Lista.java" />
+        <option value="$PROJECT_DIR$/../admin_console/src/gestores/MesadeVoto.java" />
+        <option value="$PROJECT_DIR$/../admin_console/src/gestores/Pessoa.java" />
       </list>
     </option>
   </component>
@@ -619,6 +428,12 @@
             </path>
             <path>
               <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
+              <item name="admin_console" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
               <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -631,80 +446,6 @@
               <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-              <item name="managers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
-              <item name="managers" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="pessoas" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="rmi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
-              <item name="basic_struts" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
@@ -736,7 +477,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="errors" type="462c0819:PsiDirectoryNode" />
+              <item name="voting-terminal" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Struts2One" type="b2602c69:ProjectViewProjectNode" />
@@ -998,12 +739,12 @@
       <workItem from="1513654361921" duration="9195000" />
       <workItem from="1513663862703" duration="50547000" />
       <workItem from="1513880089587" duration="11962000" />
-      <workItem from="1513898827386" duration="7640000" />
+      <workItem from="1513898827386" duration="9272000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89110000" />
+    <option name="totallyTimeSpent" value="90742000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="827" extended-state="0" />
@@ -1056,29 +797,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Pessoa.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="444" column="9" lean-forward="false" selection-start-line="444" selection-start-column="9" selection-end-line="444" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/admin_console.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/AdminConsole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="114" column="4" lean-forward="false" selection-start-line="114" selection-start-column="4" selection-end-line="116" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/departamentos/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -1091,30 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/MesadeVoto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="97" column="24" lean-forward="false" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Faculdade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Data.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1147,14 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="40" lean-forward="true" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1210,14 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-533">
           <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Lista.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="170" column="35" lean-forward="false" selection-start-line="170" selection-start-column="35" selection-end-line="170" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1359,22 +1037,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Eleicao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="229" column="24" lean-forward="false" selection-start-line="229" selection-start-column="24" selection-end-line="229" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Departamento.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="82" column="9" lean-forward="false" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/actions/managers/models/Faculdades.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
@@ -1417,26 +1079,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="110" column="63" lean-forward="false" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/new.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="137" column="13" lean-forward="true" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1666,10 +1312,120 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Downloads/EntregaSD/projecto-codigo/Meta2.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/details.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="131" column="35" lean-forward="false" selection-start-line="131" selection-start-column="35" selection-end-line="131" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/main/AdminConsole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Data.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="34" lean-forward="false" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Departamento.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Eleicao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="9" column="34" lean-forward="false" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Faculdade.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="34" lean-forward="false" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Lista.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/MesadeVoto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../admin_console/src/gestores/Pessoa.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6309">
+          <caret line="12" column="34" lean-forward="false" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/edit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-234">
+          <caret line="110" column="13" lean-forward="true" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/admin-console/pessoas/new.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="137" column="13" lean-forward="true" selection-start-line="137" selection-start-column="13" selection-end-line="137" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

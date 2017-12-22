@@ -1,6 +1,6 @@
 package gestores;
 
-import static adminconsole.AdminConsole.*;
+import static main.AdminConsole.*;
 
 public class Data {
 

@@ -1,14 +1,11 @@
 package gestores;
 
-import models.eleicoes.*;
-import models.eleicoes.Eleicao;
-import models.pessoas.*;
 import models.pessoas.Pessoa;
 
 import java.rmi.RemoteException;
 import java.util.function.BooleanSupplier;
 
-import static adminconsole.AdminConsole.*;
+import static main.AdminConsole.*;
 
 public class Lista {
     public static void menu() {

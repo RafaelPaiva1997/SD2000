@@ -1,3 +1,5 @@
+package main;
+
 import com.sun.media.sound.InvalidFormatException;
 import exceptions.EmptyQueryException;
 import gestores.*;

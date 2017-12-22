@@ -5,12 +5,8 @@ import models.eleicoes.Eleicao;
 import java.rmi.RemoteException;
 import java.util.function.BooleanSupplier;
 
-import static adminconsole.AdminConsole.*;
-import static adminconsole.AdminConsole.remove;
+import static main.AdminConsole.*;
 
-/**
- * Created by Johny on 10/12/2017.
- */
 public class MesadeVoto {
 
     public static void menu() {
