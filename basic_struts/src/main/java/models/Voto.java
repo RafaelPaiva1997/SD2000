@@ -16,6 +16,7 @@ public class Voto extends Model implements Serializable {
     public Voto() {
         super();
         table = "Votos";
+        mesa_voto_id = -1;
     }
 
     public Voto(ResultSet resultSet) {

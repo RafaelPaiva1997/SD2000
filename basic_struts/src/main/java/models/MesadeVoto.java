@@ -34,12 +34,17 @@ public class MesadeVoto extends Model implements Serializable {
         }
     }
 
+    public int getDepartamento_id() {
+        return departamento_id;
+    }
+
     public boolean isWorking() {
         return working;
     }
 
     public void setWorking(boolean working) {
         this.working = working;
+        update.add(new String[]{"working", working ? "1" : "0"});
     }
 
     public String sqlInsert() {

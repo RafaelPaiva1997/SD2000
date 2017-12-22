@@ -33,6 +33,8 @@ public class Listas extends ActionModel {
         eleicaoError = "";
         eleicaoDefault = "";
         eleicoes = new ArrayList<>();
+        pessoas = new ArrayList<>();
+        nao_pessoas = new ArrayList<>();
         listas = new ArrayList<>();
     }
 
@@ -218,6 +220,10 @@ public class Listas extends ActionModel {
     }
 
     public String addPessoa() {
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
         try {
             RMI.rmi.connect(RMI.rmi.get("listas", "ID=" + id), RMI.rmi.get("pessoas", "ID=" + id_pessoa));
             fillPessoas();
@@ -230,6 +236,10 @@ public class Listas extends ActionModel {
     }
 
     public String removePessoa() {
+        String validation;
+        if (!(validation = validateAdmin()).equals("success"))
+            return validation;
+
         try {
             RMI.rmi.disconnect(RMI.rmi.get("listas", "ID=" + id), RMI.rmi.get("pessoas", "ID=" + id_pessoa));
             fillPessoas();

@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Struts2One.iml" filepath="$PROJECT_DIR$/Struts2One.iml" />
       <module fileurl="file://$PROJECT_DIR$/../admin_console/admin_console.iml" filepath="$PROJECT_DIR$/../admin_console/admin_console.iml" />
       <module fileurl="file://$PROJECT_DIR$/../rmi/rmi.iml" filepath="$PROJECT_DIR$/../rmi/rmi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../voting_terminal/voting_terminal.iml" filepath="$PROJECT_DIR$/../voting_terminal/voting_terminal.iml" />
     </modules>
   </component>
 </project>

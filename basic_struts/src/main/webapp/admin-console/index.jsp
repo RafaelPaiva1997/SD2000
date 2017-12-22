@@ -97,6 +97,7 @@
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-eleicoes"/>" target="_parent">ELEIÇÕES</a></th>
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-listas"/>" target="_parent">LISTAS</a></th>
         <th class="row1"><a class="header_link" href="<s:url action="admin-console-mesas-voto"/>" target="_parent">MESAS DE VOTO</a></th>
+        <th class="row1"><a class="header_link" href="<s:url action="voting-terminal"/>" target="_parent">TERMINAL VOTO</a></th>
         <th class="row1"><a class="header_link" href="<s:url action="logout"/>" target="_parent">LOGOUT</a></th>
     </tr>
 </table>

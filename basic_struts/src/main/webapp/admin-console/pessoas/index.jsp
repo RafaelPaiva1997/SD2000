@@ -36,6 +36,7 @@
         <td>Username</td>
         <td>ID Departamento</td>
         <td>Telemóvel</td>
+        <td>Admin</td>
     </tr>
     <s:iterator value="pessoas">
         <tr class="column">
@@ -56,6 +57,14 @@
             </td>
             <td class="rowleft">
                 <s:property value="telemovel"/>
+            </td>
+            <td class="rowleft">
+                <s:if test="%{admin}">
+                    Sim
+                </s:if>
+                <s:else>
+                    Não
+                </s:else>
             </td>
             <td class="rowright">
                 <a class="link1" href="

@@ -120,6 +120,8 @@ public class Eleicoes extends ActionModel {
             data_fimError = "Por favor insira uma data de fim válida!";
         eleicao.setData_fim(data_fim.export());
 
+        if (eleicao.checkDates())
+            data_inicioError = data_fimError = "Data de ínicio depois de data de fim!";
 
         try {
             if (tipo.equals("Nucleo Estudantes"))
@@ -179,6 +181,8 @@ public class Eleicoes extends ActionModel {
                 data_fimError = "Por favor insira uma data de fim válida!";
             eleicao.update("data_fim", f.format(data_fim.export()));
 
+            if (eleicao.checkDates())
+                data_inicioError = data_fimError = "Data de ínicio depois de data de fim!";
 
             try {
                 if (tipo.equals("Nucleo Estudantes") && eleicao.getDepartamento_id() != Integer.parseInt(departamento.split(" - ")[0]))
@@ -296,6 +300,20 @@ public class Eleicoes extends ActionModel {
 
         fillEleicoes();
         return INPUT;
+    }
+
+    public String editEleicao() {
+        String validation;
+        if (!(validation = fetchEleicao()).equals("success"))
+            return validation;
+
+        if (!data_inicio_print.after(new Date())) {
+            addActionError("Eleição já não pode ser editada!");
+            fillEleicoes();
+            return INPUT;
+        }
+
+        return SUCCESS;
     }
 
     public String remove() {

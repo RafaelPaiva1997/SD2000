@@ -31,7 +31,7 @@ public class Session extends ActionModel {
 
     public String login() {
         try {
-            getUser();
+            fetchUser();
             return index(user);
         } catch (UserNotLoggedException unle) {
             try {

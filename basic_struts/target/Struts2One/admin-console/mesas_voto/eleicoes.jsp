@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Terminal Voto</title>
+    <title>Gerir Eleições</title>
     <style>
         .lista2 {
             border-collapse: collapse;
@@ -55,35 +55,17 @@
         }
     </style>
 </head>
-<body bgcolor="#fffdfd">
-<%
-    session.setAttribute("index", 7);
-%>
-<s:if test="%{user.admin}">
-    <%@ include file="../admin-console/index.jsp" %>
-</s:if>
-<s:else>
-<h1 align="center">TERMINAL VOTO</h1>
-</s:else>
+<body>
+<s:set var="idmesavoto" value="%{id}"/>
+<s:set var="departamentoidvoto" value="%{departamento_id}"/>
+<h1>Gerir Eleições da Mesa de Voto do Departamento <s:property value="departamento_id"/></h1>
 <br>
+<div align="right">
+    <a class="link2" href="<s:url action='admin-console-mesas-voto'/>">Voltar</a>
+</div>
 <br>
-<table class="lista2">
-    <tr>
-        <td class="rowleft"><h2>Bem Vindo <s:property value="user.nome"/></h2></td>
-        <td class="rowright">
-            <s:if test="%{!user.admin}"><a class="link2" href="<s:url action='logout'/>">Logout</a></s:if>
-        </td>
-    </tr>
-    <tr>
-        <td class="rowleft">
-            <s:if test="hasActionErrors()">
-                <h3><s:actionerror/></h3>
-            </s:if>
-        </td>
-    </tr>
-</table>
+<h3>Eleições Permitidas</h3>
 <br>
-<h3>Eleições em que pode Votar</h3>
 <table class="lista2">
     <tr class="column">
         <td>ID</td>
@@ -117,19 +99,20 @@
             </td>
             <td class="rowright">
                 <a class="link1" href="
-                            <s:url action="votar">
+                            <s:url action="mesas-voto-eleicoes-manage" method="remove">
                                 <s:param name="eleicao_id"><s:property value="id"/></s:param>
-                                <s:param name="pessoa_id"><s:property value="user.id"/></s:param>
-                                <s:param name="pessoa_tipo"><s:property value="user.tipo"/></s:param>
+                                <s:param name="id" value="%{idmesavoto}"/>
+                                <s:param name="departamento_id" value="%{departamentoidvoto}"/>
                             </s:url>" target="_parent">
-                    Votar
+                    Remover
                 </a>
             </td>
         </tr>
     </s:iterator>
 </table>
 <br><br>
-<h3>Eleições em que já votou</h3>
+<h3>Eleições por Permitir</h3>
+<br>
 <table class="lista2">
     <tr class="column">
         <td>ID</td>
@@ -139,7 +122,7 @@
         <td>Data Fim</td>
         <td>ID Departamento</td>
     </tr>
-    <s:iterator value="eleicoes_passadas">
+    <s:iterator value="nao_eleicoes">
         <tr class="column">
             <td class="rowleft">
                 <s:property value="id"/>
@@ -160,6 +143,16 @@
                 <s:if test="tipo == 'Nucleo Estudantes'">
                     <s:property value="departamento_id"/>
                 </s:if>
+            </td>
+            <td class="rowright">
+                <a class="link1" href="
+                            <s:url action="mesas-voto-eleicoes-manage" method="add">
+                                <s:param name="eleicao_id"><s:property value="id"/></s:param>
+                                <s:param name="id" value="%{idmesavoto}"/>
+                                <s:param name="departamento_id" value="%{departamentoidvoto}"/>
+                            </s:url>" target="_parent">
+                    Adicionar
+                </a>
             </td>
         </tr>
     </s:iterator>

@@ -19,7 +19,7 @@
 
         <action name="login" class="actions.managers.Session" method="login">
             <result name="admin-console">/admin-console/index.jsp</result>
-            <result name="voting-terminal">/voting-terminal/voting-terminal.jsp</result>
+            <result name="voting-terminal" type="redirect">voting-terminal.action</result>
             <result name="input">/index.jsp</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
@@ -28,14 +28,29 @@
             <result name="success">/index.jsp</result>
         </action>
 
-        <action name="voting-terminal">
+        <action name="voting-terminal" class="actions.managers.Votar" method="fetchInfo">
+            <result name="success">/voting-terminal/voting-terminal.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
 
+        <action name="votar" class="actions.managers.Votar" method="fetchListas">
+            <result name="success">/voting-terminal/votar.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+        <action name="votar-submit" class="actions.managers.Votar" method="votar">
+            <result name="success" type="redirect">voting-terminal.action</result>
+            <result name="input">/voting-terminal/voting-terminal.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="back" class="actions.managers.Session" method="validateAdmin">
             <result name="success">/admin-console/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
         </action>
 
 
@@ -45,37 +60,42 @@
         <action name="admin-console-faculdades" class="actions.managers.models.Faculdades" method="manage">
             <result name="success">/admin-console/faculdades/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="admin-console-departamentos" class="actions.managers.models.Departamentos" method="manage">
             <result name="success">/admin-console/departamentos/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="admin-console-pessoas" class="actions.managers.models.Pessoas" method="manage">
             <result name="success">/admin-console/pessoas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="admin-console-eleicoes" class="actions.managers.models.Eleicoes" method="manage">
             <result name="success">/admin-console/eleicoes/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="admin-console-listas" class="actions.managers.models.Listas" method="manage">
             <result name="success">/admin-console/listas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
-        <action name="admin-console-mesas-voto" class="actions.managers.models.Departamentos" method="manage">
-            <result name="success">/admin-console/mesasvoto/index.jsp</result>
+        <action name="admin-console-mesas-voto" class="actions.managers.models.MesasVoto" method="manage">
+            <result name="success">/admin-console/mesas_voto/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -88,7 +108,7 @@
             <result name="success" type="redirect">admin-console-faculdades.action</result>
             <result name="input">/admin-console/faculdades/new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>add,voltar</allowed-methods>
@@ -98,7 +118,7 @@
             <result name="success" type="redirect">admin-console-faculdades.action</result>
             <result name="input">/admin-console/faculdades/edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>update,voltar</allowed-methods>
@@ -107,14 +127,14 @@
         <action name="faculdades-new" class="actions.managers.models.Faculdades" method="validateAdmin">
             <result name="success">/admin-console/faculdades/new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
         <action name="faculdades-edit" class="actions.managers.models.Faculdades" method="validateAdmin">
             <result name="success">/admin-console/faculdades/edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -122,7 +142,7 @@
             <result name="success" type="redirect">admin-console-faculdades.action</result>
             <result name="input">admin-console/faculdades/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -134,7 +154,7 @@
             <result name="success" type="redirect">admin-console-departamentos.action</result>
             <result name="input">/admin-console/departamentos/new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>add,voltar</allowed-methods>
@@ -144,7 +164,7 @@
             <result name="success" type="redirect">admin-console-departamentos.action</result>
             <result name="input">/admin-console/departamentos/edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>update,voltar</allowed-methods>
@@ -154,7 +174,7 @@
             <result name="success">/admin-console/departamentos/new.jsp</result>
             <result name="input">/admin-console/departamentos/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -162,7 +182,7 @@
             <result name="success">/admin-console/departamentos/edit.jsp</result>
             <result name="input">/admin-console/departamentos/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -170,7 +190,7 @@
             <result name="success" type="redirect">admin-console-departamentos.action</result>
             <result name="input">admin-console/departamentos/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -182,7 +202,7 @@
             <result name="success" type="redirect">admin-console-eleicoes.action</result>
             <result name="input">/admin-console/eleicoes/new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>add,voltar</allowed-methods>
@@ -192,7 +212,7 @@
             <result name="success" type="redirect">admin-console-eleicoes.action</result>
             <result name="input">/admin-console/eleicoes/edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>update,voltar</allowed-methods>
@@ -202,15 +222,15 @@
             <result name="success">/admin-console/eleicoes/new.jsp</result>
             <result name="input">/admin-console/eleicoes/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
-        <action name="eleicoes-edit" class="actions.managers.models.Eleicoes" method="fetchEleicao">
+        <action name="eleicoes-edit" class="actions.managers.models.Eleicoes" method="editEleicao">
             <result name="success">/admin-console/eleicoes/edit.jsp</result>
             <result name="input">/admin-console/eleicoes/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -218,7 +238,7 @@
             <result name="success" type="redirect">admin-console-eleicoes.action</result>
             <result name="input">admin-console/eleicoes/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -226,7 +246,7 @@
             <result name="success">/admin-console/eleicoes/details.jsp</result>
             <result name="input">/admin-console/eleicoes/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -238,7 +258,7 @@
             <result name="success" type="redirect">admin-console-listas.action</result>
             <result name="input">/admin-console/listas/new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>add,voltar</allowed-methods>
@@ -248,7 +268,7 @@
             <result name="success" type="redirect">admin-console-listas.action</result>
             <result name="input">/admin-console/listas/edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>update,voltar</allowed-methods>
@@ -258,7 +278,7 @@
             <result name="success">/admin-console/listas/new.jsp</result>
             <result name="input">/admin-console/listas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -266,7 +286,7 @@
             <result name="success">/admin-console/listas/edit.jsp</result>
             <result name="input">/admin-console/listas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -274,7 +294,7 @@
             <result name="success" type="redirect">admin-console-listas.action</result>
             <result name="input">admin-console/listas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -282,7 +302,7 @@
             <result name="success">/admin-console/listas/pessoas.jsp</result>
             <result name="input">/admin-console/listas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -291,7 +311,7 @@
             <result name="success">/admin-console/listas/pessoas.jsp</result>
             <result name="input">/admin-console/listas/pessoas.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>addPessoa,removePessoa,voltar</allowed-methods>
@@ -304,7 +324,7 @@
             <result name="success" type="redirect">admin-console-pessoas.action</result>
             <result name="input">/admin-console/pessoas/new.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>add,voltar</allowed-methods>
@@ -314,7 +334,7 @@
             <result name="success" type="redirect">admin-console-pessoas.action</result>
             <result name="input">/admin-console/pessoas/edit.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
 
             <allowed-methods>update,voltar</allowed-methods>
@@ -324,7 +344,7 @@
             <result name="success">/admin-console/pessoas/new.jsp</result>
             <result name="input">/admin-console/pessoas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -332,7 +352,7 @@
             <result name="success">/admin-console/pessoas/edit.jsp</result>
             <result name="input">/admin-console/pessoas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -340,7 +360,7 @@
             <result name="success" type="redirect">admin-console-pessoas.action</result>
             <result name="input">admin-console/pessoas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
 
@@ -348,9 +368,32 @@
             <result name="success">/admin-console/pessoas/details.jsp</result>
             <result name="input">/admin-console/pessoas/index.jsp</result>
             <result name="user-not-logged">/index.jsp</result>
-            <result name="user-not-adimn" type="redirect">voting-terminal.action</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
             <result name="rmi-error">/errors/rmi-error.jsp</result>
         </action>
+
+
+
+
+
+        <action name="mesas-voto-eleicoes" class="actions.managers.models.MesasVoto" method="fetchEleicoes">
+            <result name="success">/admin-console/mesas_voto/eleicoes.jsp</result>
+            <result name="input">/admin-console/mesas_voto/index.jsp</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+        </action>
+
+        <action name="mesas-voto-eleicoes-manage" class="actions.managers.models.MesasVoto">
+            <result name="success">/admin-console/mesas_voto/eleicoes.jsp</result>
+            <result name="input" type="redirect">admin-console-mesas-voto.action</result>
+            <result name="user-not-logged">/index.jsp</result>
+            <result name="user-not-admin" type="redirect">voting-terminal.action</result>
+            <result name="rmi-error">/errors/rmi-error.jsp</result>
+
+            <allowed-methods>add,remove</allowed-methods>
+        </action>
+
     </package>
 
 </struts>

@@ -24,6 +24,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.EmptyStackException;
 
 public class RMI extends UnicastRemoteObject implements RMIInterface {
@@ -136,7 +138,13 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                         break;
                     case "lista_pessoas":
                     case "pessoas":
-                        models.add(new Pessoa(resultSet));
+                        if (query1.equals("DISTINCT eleicaos.*")) {
+                            if (resultSet.getString("tipo").equals("Conselho Geral"))
+                                models.add(new ConselhoGeral(resultSet));
+                            else
+                                models.add(new NucleoEstudantes(resultSet));
+                        } else
+                            models.add(new Pessoa(resultSet));
                         break;
                     case "alunos":
                         models.add(new Aluno(resultSet));
@@ -154,8 +162,15 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
                         models.add(new MesadeVoto(resultSet));
                         break;
                     case "votos":
-                        models.add(new Voto(resultSet));
+                        if (query1.equals("eleicaos.*")) {
+                            if (resultSet.getString("tipo").equals("Conselho Geral"))
+                                models.add(new ConselhoGeral(resultSet));
+                            else
+                                models.add(new NucleoEstudantes(resultSet));
+                        } else
+                            models.add(new Voto(resultSet));
                         break;
+                    case "mesa_voto_eleicaos":
                     case "eleicaos":
                         if (resultSet.getString("tipo").equals("Conselho Geral"))
                             models.add(new ConselhoGeral(resultSet));
@@ -306,8 +321,6 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
         }
     }
 
-    /*
-
     @Override
     public int queryInt(String table, String query, String query2) throws RemoteException {
         try {
@@ -379,13 +392,19 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
 
         if (voto.getTipo().equals("normal")) {
 
-            if ((voto = (Voto) get("Votos", "eleicao_id = " + eleicao.getId() + " && pessoa_id = " + pessoa.getId())) == null)
+            try {
+                voto = (Voto) get("Votos", "eleicao_id = " + eleicao.getId() + " && pessoa_id = " + pessoa.getId());
+            } catch (EmptyQueryException | InvalidFormatException e) {
                 return false;
+            }
 
             Lista lista;
 
-            if ((lista = (Lista) get("Listas", "ID = " + id)) == null)
+            try {
+                lista = (Lista) get("Listas", "ID = " + id);
+            } catch (EmptyQueryException | InvalidFormatException e) {
                 return false;
+            }
 
             return connect(lista, voto) && flag;
         }
@@ -472,7 +491,6 @@ public class RMI extends UnicastRemoteObject implements RMIInterface {
             return new Voto[0];
         }
     }
-    */
 
     public boolean put(Registry registry) {
         boolean flag = true;

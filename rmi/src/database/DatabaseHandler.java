@@ -161,7 +161,6 @@ public class DatabaseHandler {
                     "PRIMARY KEY(ID)," +
                     "FOREIGN KEY(pessoa_id) REFERENCES Pessoas(ID)," +
                     "FOREIGN KEY(eleicao_id) REFERENCES Eleicaos(ID)," +
-                    "FOREIGN KEY(mesa_voto_id) REFERENCES Mesa_Votos(ID)," +
                     "UNIQUE(pessoa_id, eleicao_id)" +
                     ")");
 

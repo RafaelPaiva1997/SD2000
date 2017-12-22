@@ -43,7 +43,9 @@ public interface RMIInterface extends Remote {
 
     Pessoa login(String username, String password) throws RemoteException, UsernameException, PasswordException;
 
-    /*
+
+
+
 
     int queryInt(String table, String query, String query2) throws RemoteException;
 
@@ -60,6 +62,4 @@ public interface RMIInterface extends Remote {
     Lista[] getListas(String query) throws RemoteException;
 
     Voto[] getVotos(String query) throws RemoteException;
-
-    */
 }

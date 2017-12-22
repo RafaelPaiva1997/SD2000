@@ -66,7 +66,7 @@ public class Departamentos extends ActionModel {
 
             if (nomeError.equals("")) {
                 RMI.rmi.insert(departamento);
-                RMI.rmi.insert(new MesadeVoto(id));
+                RMI.rmi.insert(new MesadeVoto(RMI.rmi.get("departamentos", "nome='" + nome + "'").getId()));
                 return SUCCESS;
             }
 

@@ -1,5 +1,5 @@
-package votingterminal;
-
+import com.sun.media.sound.InvalidFormatException;
+import exceptions.EmptyQueryException;
 import models.MesadeVoto;
 import models.Model;
 import models.eleicoes.Eleicao;
@@ -47,7 +47,7 @@ public class VotingTerminal {
                 () -> {
                     try {
                         return (model = rmi.get(table, "ID = " + sc.nextInt())) == null;
-                    } catch (RemoteException e) {
+                    } catch (RemoteException | EmptyQueryException | InvalidFormatException e) {
                         e.printStackTrace();
                         return true;
                     }
@@ -102,9 +102,16 @@ public class VotingTerminal {
 
                 System.out.print("Insira o ID da eleição na qual pretende votar: \n");
                 printConnections("Mesa_Voto", "Eleicao", mesadeVoto.getId());
-                while (((eleicao = (Eleicao) rmi.get("Eleicaos", "ID = " + sc.nextInt())) == null) ||
-                        !pessoa.check(eleicao))
-                    System.out.println("Insira um ID Válido");
+
+                boolean success = false;
+                while (!success) {
+                    try {
+                        eleicao = (Eleicao) rmi.get("Eleicaos", "ID = " + sc.nextInt());
+                        success = !pessoa.check(eleicao);
+                    } catch (Exception e) {
+                        System.out.println("Insira um ID Válido");
+                    }
+                }
 
                 if (rmi.query("Votos", "(ID)", "WHERE eleicao_id = " + eleicao.getId() + " && pessoa_id = " + pessoa.getId()).equals("not empty")) {
                     System.out.println("Esta pessoa já votou nesta eleição.");
