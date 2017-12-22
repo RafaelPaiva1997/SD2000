@@ -108,7 +108,7 @@
         <tr>
             <td><s:label value="Genero:"/></td>
             <td>
-                <s:select headerKey="-1" headerValue="-- Selecionar --"
+                <s:select headerKey="-1" headerValue="-- Seleccionar --"
                           list="{'Masculino','Feminino','Outro'}"
                           name="genero"
                           value="genero"/>

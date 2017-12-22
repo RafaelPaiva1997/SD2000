@@ -40,7 +40,7 @@
             display: inline-block;
         }
 
-        .link2:hover, .back:active {
+        .link2:hover, .link2:active {
             background-color: deepskyblue;
         }
     </style>

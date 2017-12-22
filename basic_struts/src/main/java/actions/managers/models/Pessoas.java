@@ -55,6 +55,7 @@ public class Pessoas extends ActionModel {
     private Date data_nascimento_print;
     private String data_nascimentoError;
     private boolean admin;
+    private String admin_print;
     private String numero_aluno;
     private String numero_alunoError;
     private String curso;
@@ -133,6 +134,7 @@ public class Pessoas extends ActionModel {
         data_nascimento_dia = String.valueOf(data_nascimento.getDia());
         data_nascimento_print = pessoa.getData_nascimento();
         admin = pessoa.isAdmin();
+        admin_print = admin ? "true" : "false";
     }
 
     public void getInfo(Pessoa pessoa, Aluno aluno) {
@@ -615,6 +617,14 @@ public class Pessoas extends ActionModel {
 
     public String getPasswordError() {
         return passwordError;
+    }
+
+    public String getAdmin_print() {
+        return admin_print;
+    }
+
+    public void setAdmin_print(String admin_print) {
+        this.admin_print = admin_print;
     }
 
     public void setPasswordError(String passwordError) {
